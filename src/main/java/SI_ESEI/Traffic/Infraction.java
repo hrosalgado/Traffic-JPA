@@ -121,5 +121,4 @@ public class Infraction {
 			this.road.internalAddInfraction(this);
 		}
 	}
-	
 }
