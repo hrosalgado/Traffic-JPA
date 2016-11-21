@@ -13,6 +13,7 @@ import javax.persistence.Persistence;
 
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -64,7 +65,7 @@ public class DriverTest extends SQLBasedTest{
 		// Prepare database for test
 		Statement statement = jdbcConnection.createStatement();
 		statement.executeUpdate(
-					"INSERT INTO driver(age, sex, experience, previousInfractions, illness) "
+					"INSERT INTO driver(age, sex, experience, previous_infractions, ill) "
 					+ "VALUES(30, 0, 7, 2, 0)",
 					Statement.RETURN_GENERATED_KEYS);
 		
@@ -85,7 +86,7 @@ public class DriverTest extends SQLBasedTest{
 		// Prepare database for test
 		Statement statement = jdbcConnection.createStatement();
 		statement.executeUpdate(
-					"INSERT INTO driver(age, sex, experience, previousInfractions, illness) "
+					"INSERT INTO driver(age, sex, experience, previous_infractions, ill) "
 					+ "VALUES(30, 0, 7, 2, 0)",
 					Statement.RETURN_GENERATED_KEYS);
 		
@@ -103,7 +104,7 @@ public class DriverTest extends SQLBasedTest{
 				"SELECT * FROM driver WHERE id = " + id);
 		resultSet.next();
 		
-		assertEquals(1, resultSet.getInt("id"));
+		assertEquals(id, resultSet.getInt("id"));
 		assertEquals(24, resultSet.getInt("age"));
 	}
 	
@@ -113,7 +114,7 @@ public class DriverTest extends SQLBasedTest{
 		// Prepare database for test
 		Statement statement = jdbcConnection.createStatement();
 		statement.executeUpdate(
-					"INSERT INTO driver(age, sex, experience, previousInfractions, illness) "
+					"INSERT INTO driver(age, sex, experience, previous_infractions, ill) "
 					+ "VALUES(30, 0, 7, 2, 0)",
 					Statement.RETURN_GENERATED_KEYS);
 		
@@ -140,13 +141,13 @@ public class DriverTest extends SQLBasedTest{
 		// Prepare database for test
 		Statement statement = jdbcConnection.createStatement();
 		statement.executeUpdate(
-					"INSERT INTO driver(age, sex, experience, previousInfractions, illness) "
+					"INSERT INTO driver(age, sex, experience, previous_infractions, ill) "
 					+ "VALUES(30, 0, 7, 2, 0)",
 					Statement.RETURN_GENERATED_KEYS);
 		
 		statement = jdbcConnection.createStatement();
 		statement.executeUpdate(
-					"INSERT INTO driver(age, sex, experience, previousInfractions, illness) "
+					"INSERT INTO driver(age, sex, experience, previous_infractions, ill) "
 					+ "VALUES(24, 1, 4, 0, 0)",
 					Statement.RETURN_GENERATED_KEYS);
 		
