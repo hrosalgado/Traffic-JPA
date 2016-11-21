@@ -76,8 +76,9 @@ public class DriverTest extends SQLBasedTest{
 		System.out.println(driver);
 		
 		// Check
-		assertEquals(30, driver.getAge());
 		assertEquals(id, driver.getId());
+		assertEquals(30, driver.getAge());
+		assertEquals(7, driver.getExperience());
 	}
 	
 	// Update
@@ -96,6 +97,7 @@ public class DriverTest extends SQLBasedTest{
 		doTransaction(emf, em -> {
 			Driver driver = em.find(Driver.class, id);
 			driver.setAge(24);
+			driver.setExperience(4);
 		});
 		
 		// Check
@@ -106,6 +108,7 @@ public class DriverTest extends SQLBasedTest{
 		
 		assertEquals(id, resultSet.getInt("id"));
 		assertEquals(24, resultSet.getInt("age"));
+		assertEquals(4, resultSet.getInt("experience"));
 	}
 	
 	// Delete
