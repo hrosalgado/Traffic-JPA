@@ -52,7 +52,7 @@ public class Vehicle{
 	private int antiquity;
 	
 	// Drive permission
-	@Column(name = "driver_permission")
+	@Column(name = "drive_permission")
 	@NotNull
 	private Boolean drivePermission;
 	

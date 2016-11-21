@@ -62,7 +62,7 @@ public class DriverTest extends SQLBasedTest{
 	
 	// Read
 	@Test
-	public void testFindById() throws SQLException{
+	public void testFindDriverById() throws SQLException{
 		// Prepare database for test
 		Statement statement = jdbcConnection.createStatement();
 		statement.executeUpdate(
@@ -74,7 +74,6 @@ public class DriverTest extends SQLBasedTest{
 
 		// Test code
 		Driver driver = emf.createEntityManager().find(Driver.class, id);
-		System.out.println(driver);
 		
 		// Check
 		assertEquals(id, driver.getId());
