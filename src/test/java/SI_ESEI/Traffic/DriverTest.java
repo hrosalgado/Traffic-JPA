@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -76,5 +77,86 @@ public class DriverTest extends SQLBasedTest{
 		// Check
 		assertEquals(30, driver.getAge());
 		assertEquals(id, driver.getId());
+	}
+	
+	// Update
+	@Test
+	public void testUpdateDriver() throws SQLException{
+		// Prepare database for test
+		Statement statement = jdbcConnection.createStatement();
+		statement.executeUpdate(
+					"INSERT INTO driver(age, sex, experience, previousInfractions, illness) "
+					+ "VALUES(30, 0, 7, 2, 0)",
+					Statement.RETURN_GENERATED_KEYS);
+		
+		int id = getLastInsertedId(statement);
+		
+		// Test code
+		doTransaction(emf, em -> {
+			Driver driver = em.find(Driver.class, id);
+			driver.setAge(24);
+		});
+		
+		// Check
+		statement = jdbcConnection.createStatement();
+		ResultSet resultSet = statement.executeQuery(
+				"SELECT * FROM driver WHERE id = " + id);
+		resultSet.next();
+		
+		assertEquals(1, resultSet.getInt("id"));
+		assertEquals(24, resultSet.getInt("age"));
+	}
+	
+	// Delete
+	@Test
+	public void testDeleteDriver() throws SQLException{
+		// Prepare database for test
+		Statement statement = jdbcConnection.createStatement();
+		statement.executeUpdate(
+					"INSERT INTO driver(age, sex, experience, previousInfractions, illness) "
+					+ "VALUES(30, 0, 7, 2, 0)",
+					Statement.RETURN_GENERATED_KEYS);
+		
+		int id = getLastInsertedId(statement);
+		
+		// Test code
+		doTransaction(emf, em -> {
+			Driver driver = em.find(Driver.class, id);
+			em.remove(driver);
+		});
+		
+		// Check
+		statement = jdbcConnection.createStatement();
+		ResultSet resultSet = statement.executeQuery(
+				"SELECT count(*) as total FROM driver WHERE id = " + id);
+		resultSet.next();
+		
+		assertEquals(0, resultSet.getInt("total"));
+	}
+	
+	// List
+	@Test
+	public void testListDriver() throws SQLException{
+		// Prepare database for test
+		Statement statement = jdbcConnection.createStatement();
+		statement.executeUpdate(
+					"INSERT INTO driver(age, sex, experience, previousInfractions, illness) "
+					+ "VALUES(30, 0, 7, 2, 0)",
+					Statement.RETURN_GENERATED_KEYS);
+		
+		statement = jdbcConnection.createStatement();
+		statement.executeUpdate(
+					"INSERT INTO driver(age, sex, experience, previousInfractions, illness) "
+					+ "VALUES(24, 1, 4, 0, 0)",
+					Statement.RETURN_GENERATED_KEYS);
+		
+		List<Driver> drivers = emf.createEntityManager()
+				.createQuery("SELECT driver FROM Driver driver ORDER BY driver.age", Driver.class)
+				.getResultList();
+		
+		// Check
+		assertEquals(2, drivers.size());
+		assertEquals(24, drivers.get(0).getAge());
+		assertEquals(30, drivers.get(1).getAge());
 	}
 }
