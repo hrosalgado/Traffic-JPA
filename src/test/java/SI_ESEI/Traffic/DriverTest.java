@@ -13,7 +13,6 @@ import javax.persistence.Persistence;
 
 import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -22,12 +21,14 @@ public class DriverTest extends SQLBasedTest{
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("si-database");
+		emf = Persistence.createEntityManagerFactory("traffic");
 	}
 	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		if(emf!=null && emf.isOpen()) emf.close();
+		if(emf != null && emf.isOpen()){
+			emf.close();
+		}
 	}
 	
 	@After

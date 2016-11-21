@@ -22,7 +22,7 @@ public class DateTimeTest extends SQLBasedTest{
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("si-database");
+		emf = Persistence.createEntityManagerFactory("traffic");
 	}
 	
 	@AfterClass
