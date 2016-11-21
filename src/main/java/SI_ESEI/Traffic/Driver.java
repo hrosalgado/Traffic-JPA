@@ -111,7 +111,7 @@ public class Driver{
 		vehicle.setDriver(null);
 	}
 	
-	public void internalAddDriver(Vehicle vehicle){
+	public void internalAddVehicle(Vehicle vehicle){
 		this.vehicles.add(vehicle);
 	}
 	

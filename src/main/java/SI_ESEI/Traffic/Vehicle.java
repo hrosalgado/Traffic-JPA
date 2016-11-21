@@ -137,7 +137,7 @@ public class Vehicle{
 		this.driver = driver;
 		
 		if(this.driver != null){
-			this.driver.internalAddDriver(this);
+			this.driver.internalAddVehicle(this);
 		}
 	}
 }

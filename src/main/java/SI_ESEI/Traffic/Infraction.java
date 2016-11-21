@@ -1,14 +1,10 @@
 package SI_ESEI.Traffic;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 
 @Entity
@@ -104,6 +100,26 @@ public class Infraction {
 	
 	public DateTime getDateTime(){
 		return this.datetime;
+	}
+	
+	// Relation with Road
+	@ManyToOne
+	private Road road;
+	
+	public Road getRoad(){
+		return this.road;
+	}
+	
+	public void setRoad(Road road){
+		if(this.road != null){
+			this.road.internalRemoveInfraction(this);
+		}
+		
+		this.road = road;
+		
+		if(this.road != null){
+			this.road.internalAddInfraction(this);
+		}
 	}
 	
 }
