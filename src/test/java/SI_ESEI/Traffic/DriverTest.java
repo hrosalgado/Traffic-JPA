@@ -40,11 +40,11 @@ public class DriverTest extends SQLBasedTest{
 		final Driver driver = new Driver();
 		
 		doTransaction(emf, em -> {
-			driver.setSex("Male");
+			driver.setSex(false);
 			driver.setAge(22);
 			driver.setExperience(0);
 			driver.setPreviousInfractions(0);
-			driver.setIll("No");
+			driver.setIll(false);
 			em.persist(driver);
 		});
 		
@@ -62,12 +62,12 @@ public class DriverTest extends SQLBasedTest{
 	public void testFindById() throws SQLException{
 		// Prepare database for test
 		Statement statement = jdbcConnection.createStatement();
-		int id = statement.executeUpdate(
+		statement.executeUpdate(
 					"INSERT INTO driver(age, sex, experience, previousInfractions, illness) "
-					+ "VALUES(30, 'Female', 7, 2, 'No')",
+					+ "VALUES(30, 0, 7, 2, 0)",
 					Statement.RETURN_GENERATED_KEYS);
 		
-		System.out.println("ID: " + id);
+		int id = getLastInsertedId(statement);
 
 		// Test code
 		Driver driver = emf.createEntityManager().find(Driver.class, id);
