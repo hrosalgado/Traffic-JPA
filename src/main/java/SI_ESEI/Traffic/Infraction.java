@@ -6,68 +6,65 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-
 @Entity
-public class Infraction {
-
+public class Infraction{
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idInfraction;
 	
-	//idDriver
-	//una infraction solo puede tener un conductor, pero un conductor puede tener varias infracciones
+	// idDriver
+	// una infraction solo puede tener un conductor, pero un conductor puede
+	// tener varias infracciones
 	@ManyToOne
 	private Driver driver;
 	
-	
-	//idDatetime
-	//una infraccion solo puede tener una fecha, pero una fecha puede tener varias infracciones
+	// idDatetime
+	// una infraccion solo puede tener una fecha, pero una fecha puede tener
+	// varias infracciones
 	@ManyToOne
 	private DateTime datetime;
 	
-	//idKmPoint
-	//idVehicle
+	// idKmPoint
+	// idVehicle
 	
-	//type
+	// type
 	private String type;
 	
-	//description
+	// description
 	private String description;
 	
-	//penalty
+	// penalty
 	private int penalty;
-	
-	
 	
 	public int getIdInfraction(){
 		return idInfraction;
 	}
 	
-	public String getType() {
+	public String getType(){
 		return type;
 	}
-
-	public void setType(String type) {
+	
+	public void setType(String type){
 		this.type = type;
 	}
 	
-	public String getDescription() {
+	public String getDescription(){
 		return description;
 	}
-
-	public void setDescription(String description) {
+	
+	public void setDescription(String description){
 		this.description = description;
 	}
-
-	public int getPenalty() {
+	
+	public int getPenalty(){
 		return penalty;
 	}
-
-	public void setPenalty(int penalty) {
+	
+	public void setPenalty(int penalty){
 		this.penalty = penalty;
 	}
 	
-	//relation with Driver
+	// relation with Driver
 	public void setDriver(Driver d){
 		if(this.driver != null){
 			this.driver.internalRemoveInfraction(this);
@@ -84,9 +81,8 @@ public class Infraction {
 		return this.driver;
 	}
 	
-	
-	//relation whit DateTime
-	public void setDate(DateTime dt){
+	// relation whit DateTime
+	public void setDateTime(DateTime dt){
 		if(this.datetime != null){
 			this.datetime.internalRemoveInfraction(this);
 		}
@@ -119,6 +115,26 @@ public class Infraction {
 		
 		if(this.road != null){
 			this.road.internalAddInfraction(this);
+		}
+	}
+	
+	// Relation with KmPoint
+	@ManyToOne
+	private KmPoint kmpoint;
+	
+	public KmPoint getKmPoint(){
+		return this.kmpoint;
+	}
+	
+	public void setKmPoint(KmPoint kmpoint){
+		if(this.kmpoint != null){
+			this.kmpoint.internalRemoveInfraction(this);
+		}
+		
+		this.kmpoint = kmpoint;
+		
+		if(this.kmpoint != null){
+			this.kmpoint.internalAddInfraction(this);
 		}
 	}
 }
