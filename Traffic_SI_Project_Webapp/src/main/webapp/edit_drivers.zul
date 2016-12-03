@@ -1,0 +1,49 @@
+<zk>
+	<include src = "menu.zul"></include>
+	<window title = "Edit drivers" border = "normal"
+		apply = "org.zkoss.bind.BindComposer"
+		viewModel = "@id('vm') @init('SI_ESEI.Traffic.webapp.DriversVM')">
+		<window title="Driver editor" border="normal" mode="normal" visible="@load(vm.currentDriver ne null)">
+			Age: <textbox value="@load(vm.currentDriver.age) @save(vm.currentDriver.age, before='save')"></textbox>
+			
+			Sex: <textbox value="@load(vm.currentDriver.sex) @save(vm.currentDriver.sex, before='save')"></textbox>
+			
+			Experience: <textbox value="@load(vm.currentDriver.experience) @save(vm.currentDriver.experience, before='save')"></textbox>
+			
+			Previous infractions: <textbox value="@load(vm.currentDriver.previousInfractions) @save(vm.currentDriver.previousInfractionss, before='save')"></textbox>
+			
+			Ill <textbox value="@load(vm.currentDriver.ill) @save(vm.currentDriver.ill, before='save')"></textbox>
+			
+			<hbox>
+				<button label="save" onClick="@command('save')"></button>
+				<button label="cancel" onClick="@command('cancel')"></button>
+			</hbox>
+		</window>
+		
+		<groupbox mold="3d" closable="false">
+			<caption label="Driver list">
+				<button label="new" onClick="@command('newDriver')"></button>
+			</caption>
+			
+			<listbox model="@load(vm.drivers)">
+				<listhead>
+					<listheader label="age"></listheader>
+					<listheader label="actions"></listheader>
+				</listhead>
+				
+				<template name="model">
+					<listitem>
+						<listcell>
+							<label value="@load(each.age)"></label>
+						</listcell>
+						
+						<listcell>
+							<button label="delete" onClick="@command('delete', e = each)"></button>
+							<button label="edit" onClick="@command('edit', e = each)"></button>
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</groupbox>
+	</window>
+</zk>

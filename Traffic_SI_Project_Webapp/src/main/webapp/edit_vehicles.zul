@@ -19,9 +19,43 @@
 			Electric: <textbox value="@load(vm.currentVehicle.electric) @save(vm.currentVehicle.electric, before='save')"></textbox>
 			
 			Driver
-			<combobox model="">
-				
+			<combobox model="@load(vm.drivers)"
+						selectedItem="@load(vm.currentVehicle.driver) @save(vm.currentVehicle.driver, before='save')">
+				<template name="model">
+					<comboitem label="@load(each.age)"></comboitem>
+				</template>
 			</combobox>
+			
+			<hbox>
+				<button label="save" onClick="@command('save')"></button>
+				<button label="cancel" onClick="@command('cancel')"></button>
+			</hbox>
 		</window>
+		
+		<groupbox mold="3d" closable="false">
+			<caption label="Drivers list">
+				<button label="new" onClick="@command('newVehicle')"></button>
+			</caption>
+			
+			<listbox model="@load(vm.vehicles)">
+				<listhead>
+					<listheader label="type"></listheader>
+					<listheader label="actions"></listheader>
+				</listhead>
+				
+				<template name="model">
+					<listitem>
+						<listcell>
+							<label value="@load(each.type)"></label>
+						</listcell>
+						
+						<listcell>
+							<button label="delete" onClick="@command('delete', e = each)"></button>
+							<button label="edit" onClick="@command('edit', e = each)"></button>
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</groupbox>
 	</window>
 </zk>

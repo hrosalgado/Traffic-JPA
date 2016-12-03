@@ -3,8 +3,6 @@ package SI_ESEI.Traffic.webapp;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.transaction.Transaction;
-
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.NotifyChange;
@@ -15,7 +13,6 @@ import SI_ESEI.Traffic.Vehicle;
 import SI_ESEI.Traffic.webapp.util.DesktopEntityManagerManager;
 
 public class VehiclesVM{
-	// Vehicle under edition...
 	private Vehicle currentVehicle = null;
 	
 	public Vehicle getCurrentVehicle(){
