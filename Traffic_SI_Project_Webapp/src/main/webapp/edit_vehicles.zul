@@ -1,0 +1,27 @@
+<zk>
+	<include src = "menu.zul"></include>
+	<window title = "Edit vehicles" border = "normal"
+		apply = "org.zkoss.bind.BindComposer"
+		viewModel = "@id('vm') @init('SI_ESEI.Traffic.webapp.VehiclesVM')">
+		<window title="Vehicle editor" border="normal" mode="normal" visible="@load(vm.currentVehicle ne null)">
+			Type: <textbox value="@load(vm.currentVehicle.type) @save(vm.currentVehicle.type, before='save')"></textbox>
+			
+			Brand: <textbox value="@load(vm.currentVehicle.brand) @save(vm.currentVehicle.brand, before='save')"></textbox>
+			
+			Car spaces: <textbox value="@load(vm.currentVehicle.carSpaces) @save(vm.currentVehicle.carSpaces, before='save')"></textbox>
+			
+			Passengers: <textbox value="@load(vm.currentVehicle.passengers) @save(vm.currentVehicle.passengers, before='save')"></textbox>
+			
+			Antiquity <textbox value="@load(vm.currentVehicle.antiquity) @save(vm.currentVehicle.antiquity, before='save')"></textbox>
+			
+			Drive permission: <textbox value="@laod(vm.currentVehicle.drivePermission) @save(vm.currentVehicle.drivePermission, before='save')"></textbox>
+			
+			Electric: <textbox value="@load(vm.currentVehicle.electric) @save(vm.currentVehicle.electric, before='save')"></textbox>
+			
+			Driver
+			<combobox model="">
+				
+			</combobox>
+		</window>
+	</window>
+</zk>
