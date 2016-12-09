@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
@@ -96,7 +97,7 @@ public class Driver{
 	}
 	
 	// Relation with Vehicle
-	@OneToMany(mappedBy = "driver")
+	/*@OneToMany(mappedBy = "driver")
 	private Set<Vehicle> vehicles = new HashSet<>();
 	
 	public Set<Vehicle> getVehicles(){
@@ -117,6 +118,25 @@ public class Driver{
 	
 	public void internalRemoveVehicle(Vehicle vehicle){
 		this.vehicles.remove(vehicle);
+	}*/
+	@ManyToMany(mappedBy = "drivers")
+	private Set<Vehicle> vehicles = new HashSet<>();
+	
+	public Set<Vehicle> getVehicles(){
+		return Collections.unmodifiableSet(this.vehicles);
+	}
+	
+	public void addVehicle(Vehicle v){
+		v.internalAddDriver(this);
+		this.vehicles.add(v);
+	}
+	
+	public void internalAddVehicle(Vehicle v){
+		this.vehicles.add(v);
+	}
+	
+	public void internalRemoveVehicle(Vehicle v){
+		this.vehicles.remove(v);
 	}
 	
 	// Relation with Infraction
