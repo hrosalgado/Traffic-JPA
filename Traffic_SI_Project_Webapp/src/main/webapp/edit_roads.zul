@@ -1,0 +1,18 @@
+<zk>
+	<include src="menu.zul"/>
+	<window title="Edit Roads" border="normal"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel = "@id('vm') @init('SI_ESEI.Traffic.webapp.RoadsVM')">
+		<window title="e editor" border="normal" mode="normal" visible="@load(vm.currentRoad ne null)">
+		
+			Name: <textbox value="@load(vm.currentRoad.name) @save(vm.currentRoad.name, before='save')"></textbox>
+			
+			Type: <textbox value="@load(vm.currentRoad.type) @save(vm.currentRoad.type, before='save')"></textbox>
+			
+			Toll: <textbox value="@load(vm.currentRoad.toll) @save(vm.currentRoad.toll, before='save')"></textbox>
+			
+			Maximum Speed: <textbox value="@load(vm.currentRoad.maxSpeed) @save(vm.currentRoad.maxSpeed, before='save')"></textbox>
+			
+		</window>
+	</window>
+</zk>
