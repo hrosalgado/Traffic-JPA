@@ -3,7 +3,7 @@
 	<window title = "Edit vehicles" border = "normal"
 		apply = "org.zkoss.bind.BindComposer"
 		viewModel = "@id('vm') @init('SI_ESEI.Traffic.webapp.VehiclesVM')">
-		<window title="Vehicle editor" border="normal" mode="normal" visible="@load(vm.currentVehicle ne null)">
+		<window title="Vehicle editor" border="normal" mode="modal" visible="@load(vm.currentVehicle ne null)">
 			Type: <textbox value="@load(vm.currentVehicle.type) @save(vm.currentVehicle.type, before='save')"></textbox>
 			
 			Brand: <textbox value="@load(vm.currentVehicle.brand) @save(vm.currentVehicle.brand, before='save')"></textbox>
@@ -33,13 +33,19 @@
 		</window>
 		
 		<groupbox mold="3d" closable="false">
-			<caption label="Drivers list">
+			<caption label="Vehicles list">
 				<button label="new" onClick="@command('newVehicle')"></button>
 			</caption>
 			
 			<listbox model="@load(vm.vehicles)">
 				<listhead>
 					<listheader label="type"></listheader>
+					<listheader label="brand"></listheader>
+					<listheader label="car spaces"></listheader>
+					<listheader label="passengers"></listheader>
+					<listheader label="antiquity"></listheader>
+					<listheader label="drive permission"></listheader>
+					<listheader label="electric"></listheader>
 					<listheader label="actions"></listheader>
 				</listhead>
 				
@@ -47,6 +53,12 @@
 					<listitem>
 						<listcell>
 							<label value="@load(each.type)"></label>
+							<label value="@load(each.brand)"></label>
+							<label value="@load(each.carSpaces)"></label>
+							<label value="@load(each.passengers)"></label>
+							<label value="@load(each.antiquity)"></label>
+							<label value="@load(each.drivePermission)"></label>
+							<label value="@load(each.electric)"></label>
 						</listcell>
 						
 						<listcell>

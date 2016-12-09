@@ -3,7 +3,7 @@
 	<window title = "Edit drivers" border = "normal"
 		apply = "org.zkoss.bind.BindComposer"
 		viewModel = "@id('vm') @init('SI_ESEI.Traffic.webapp.DriversVM')">
-		<window title="Driver editor" border="normal" mode="normal" visible="@load(vm.currentDriver ne null)">
+		<window title="Driver editor" border="normal" mode="modal" visible="@load(vm.currentDriver ne null)">
 			Age: <textbox value="@load(vm.currentDriver.age) @save(vm.currentDriver.age, before='save')"></textbox>
 			
 			Sex: <textbox value="@load(vm.currentDriver.sex) @save(vm.currentDriver.sex, before='save')"></textbox>
@@ -28,6 +28,10 @@
 			<listbox model="@load(vm.drivers)">
 				<listhead>
 					<listheader label="age"></listheader>
+					<listheader label="sex"></listheader>
+					<listheader label="experience"></listheader>
+					<listheader label="previous infractions"></listheader>
+					<listheader label="ill"></listheader>
 					<listheader label="actions"></listheader>
 				</listhead>
 				
@@ -35,6 +39,22 @@
 					<listitem>
 						<listcell>
 							<label value="@load(each.age)"></label>
+						</listcell>
+						
+						<listcell>
+							<label value="@load(each.sex)"></label>
+						</listcell>
+						
+						<listcell>
+							<label value="@load(each.experience)"></label>
+						</listcell>
+						
+						<listcell>
+							<label value="@load(each.previousInfractions)"></label>
+						</listcell>
+						
+						<listcell>
+							<label value="@load(each.ill)"></label>
 						</listcell>
 						
 						<listcell>

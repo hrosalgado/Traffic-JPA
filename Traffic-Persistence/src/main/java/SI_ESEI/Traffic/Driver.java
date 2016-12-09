@@ -97,28 +97,6 @@ public class Driver{
 	}
 	
 	// Relation with Vehicle
-	/*@OneToMany(mappedBy = "driver")
-	private Set<Vehicle> vehicles = new HashSet<>();
-	
-	public Set<Vehicle> getVehicles(){
-		return Collections.unmodifiableSet(vehicles);
-	}
-	
-	public void addVehicle(Vehicle vehicle){
-		vehicle.setDriver(this);
-	}
-	
-	public void removeVehicle(Vehicle vehicle){
-		vehicle.setDriver(null);
-	}
-	
-	public void internalAddVehicle(Vehicle vehicle){
-		this.vehicles.add(vehicle);
-	}
-	
-	public void internalRemoveVehicle(Vehicle vehicle){
-		this.vehicles.remove(vehicle);
-	}*/
 	@ManyToMany(mappedBy = "drivers")
 	private Set<Vehicle> vehicles = new HashSet<>();
 	

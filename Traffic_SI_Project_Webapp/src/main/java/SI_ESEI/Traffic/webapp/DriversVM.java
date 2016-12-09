@@ -1,10 +1,7 @@
 package SI_ESEI.Traffic.webapp;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 
 import org.zkoss.bind.annotation.BindingParam;
@@ -13,7 +10,6 @@ import org.zkoss.bind.annotation.NotifyChange;
 
 import SI_ESEI.Traffic.Driver;
 import SI_ESEI.Traffic.TransactionUtils;
-import SI_ESEI.Traffic.Vehicle;
 import SI_ESEI.Traffic.webapp.util.DesktopEntityManagerManager;
 
 public class DriversVM{
@@ -33,13 +29,7 @@ public class DriversVM{
 	public void delete(@BindingParam("d") Driver driver){
 		EntityManager em = DesktopEntityManagerManager.getDesktopEntityManager();
 		TransactionUtils.doTransaction(em, __ -> {
-			Set<Vehicle> vehiclesCopy = new HashSet<>(driver.getVehicles());
-			
-			for(Vehicle myVehicle : vehiclesCopy){
-				myVehicle.setDriver(null);
-			}
-			
-			em.refresh(driver);
+			em.remove(driver);
 		});
 	}
 	

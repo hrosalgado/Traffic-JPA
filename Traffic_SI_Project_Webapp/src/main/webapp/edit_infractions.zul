@@ -1,0 +1,58 @@
+<zk>
+	<include src="menu.zul"></include>
+	<window title="Edit infractions" border="normal"
+			apply="org.zkoss.bind.BindComposer"
+			viewModel="@id('vm') @init('SI_ESEI.Traffic.webapp.InfractionsVM')"
+	>
+		<window title="Infraction editor" border="normal" mode="modal" visible="@load(vm.currentInfraction ne null)">
+			Type: <textbox value="@load(vm.currentInfraction.type) @save(vm.currentInfraction.type, before='save')"></textbox>
+			
+			Description: <textbox value="@load(vm.currentInfraction.description) @save(vm.currentInfraction.description, before='save')"></textbox>
+			
+			Penalty: <textbox value="@load(vm.currentInfraction.penalty) @save(vm.currentInfraction.penalty, before='save')"></textbox>
+			
+			Driver:
+			<combobox model="@load(vm.drivers)"
+						selectedItem="@load(vm.currentInfraction.driver) @save(vm.currentInfraction.driver, before='save')"
+			>
+				<template name="model">
+					<comboitem label="@load(each.age)"></comboitem>
+				</template>
+			</combobox>
+			
+			<hbox>
+				<button label="save" onClick="@command('save')"></button>
+				<button label="cancel" onClick="@command('cancel')"></button>
+			</hbox>
+		</window>
+		
+		<groupbox mold="3d" closable="false">
+			<caption label="Infraction list">
+				<button label="new" onClick="@command('newInfraction')"></button>
+			</caption>
+			
+			<listbox model="@load(vm.infractions)">
+				<listhead>
+					<listheader label="type"></listheader>
+					<listheader label="description"></listheader>
+					<listheader label="penalty"></listheader>
+					<listheader label="driver"></listheader>
+					<listheader label="actions"></listheader>
+				</listhead>
+				
+				<template name="model">
+					<listitem>
+						<listcell><label value="@load(each.type)"></label></listcell>
+						<listcell><label value="@load(each.description)"></label></listcell>
+						<listcell><label value="@load(each.penalty)"></label></listcell>
+						<listcell><label value="@load(each.driver)"></label></listcell>
+						<listcell>
+							<button label="delete" onClick="@command('delete', e = each)"/>
+							<button label="edit" onClick="@command('edit', e = each)"/>
+						</listcell>	
+					</listitem>
+				</template>
+			</listbox>
+		</groupbox>
+	</window>
+</zk>

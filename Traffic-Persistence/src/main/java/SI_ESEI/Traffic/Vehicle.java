@@ -127,25 +127,6 @@ public class Vehicle{
 	}
 	
 	// Relation with Driver
-	/*@ManyToOne
-	private Driver driver;
-	
-	public Driver getDriver(){
-		return this.driver;
-	}
-	
-	public void setDriver(Driver driver){
-		if(this.driver != null){
-			this.driver.internalRemoveVehicle(this);
-		}
-		
-		this.driver = driver;
-		
-		if(this.driver != null){
-			this.driver.internalAddVehicle(this);
-		}
-	}*/
-	
 	@ManyToMany
 	private Set<Driver> drivers = new HashSet<>();
 	
