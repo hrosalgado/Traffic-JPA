@@ -1,0 +1,24 @@
+<zk>
+	<include src="menu.zul"/>
+	<window title="Edit kmPoints" border="normal"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel = "@id('vm') @init('SI_ESEI.Traffic.webapp.KmPointsVM')">
+		<window title="e editor" border="normal" mode="normal" visible="@load(vm.currentKmPoint ne null)">
+		
+			start: <textbox value="@load(vm.currentKmPoint.start) @save(vm.currentKmPoint.start, before='save')"></textbox>
+			
+			end: <textbox value="@load(vm.currentKmPoint.end) @save(vm.currentKmPoint.end, before='save')"></textbox>
+			
+			Road name: <textbox value="@load(vm.currentKmPoint.roadName) @save(vm.currentKmPoint.roadName, before='save')"></textbox>
+			
+			Road type: <textbox value="@load(vm.currentKmPoint.roadType) @save(vm.currentKmPoint.roadType, before='save')"></textbox>
+			
+			Black point: <textbox value="@load(vm.currentKmPoint.blackPoint) @save(vm.currentKmPoint.blackPoint, before='save')"></textbox>
+			
+			Singposting: <textbox value="@laod(vm.currentKmPoint.singposting) @save(vm.currentKmPoint.singposting, before='save')"></textbox>
+			
+			Radar: <textbox value="@load(vm.currentKmPoint.radar) @save(vm.currentKmPoint.radar, before='save')"></textbox>
+			
+		</window>
+	</window>
+</zk>

@@ -1,0 +1,26 @@
+<zk>
+	<include src="menu.zul"/>
+	<window title="Edit DateTimes" border="normal"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel = "@id('vm') @init('SI_ESEI.Traffic.webapp.DateTimesVM')">
+		<window title="e editor" border="normal" mode="normal" visible="@load(vm.currentDateTime ne null)">
+		
+			Day: <textbox value="@load(vm.currentDateTime.day) @save(vm.currentDateTime.day, before='save')"></textbox>
+			
+			Month: <textbox value="@load(vm.currentDateTime.month) @save(vm.currentDateTime.month, before='save')"></textbox>
+			
+			Year: <textbox value="@load(vm.currentDateTime.year) @save(vm.currentDateTime.year, before='save')"></textbox>
+			
+			Hour: <textbox value="@load(vm.currentDateTime.hour) @save(vm.currentDateTime.hour, before='save')"></textbox>
+			
+			Season: <textbox value="@load(vm.currentDateTime.season) @save(vm.currentDateTime.season, before='save')"></textbox>
+			
+			Weather: <textbox value="@laod(vm.currentDateTime.weather) @save(vm.currentDateTime.weather, before='save')"></textbox>
+			
+			Weekend: <textbox value="@load(vm.currentDateTime.weekend) @save(vm.currentDateTime.weekend, before='save')"></textbox>
+			
+			Holiday: <textbox value="@load(vm.currentDateTime.holiday) @save(vm.currentDateTime.holiday, before='save')"></textbox>
+			
+		</window>
+	</window>
+</zk>
