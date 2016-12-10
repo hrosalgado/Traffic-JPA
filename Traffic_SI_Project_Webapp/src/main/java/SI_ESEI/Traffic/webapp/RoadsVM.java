@@ -3,29 +3,20 @@ package SI_ESEI.Traffic.webapp;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.transaction.Transaction;
 
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.NotifyChange;
 
-import SI_ESEI.Traffic.Infraction;
 import SI_ESEI.Traffic.Road;
 import SI_ESEI.Traffic.TransactionUtils;
 import SI_ESEI.Traffic.webapp.util.DesktopEntityManagerManager;
 
-public class RoadsVM {
-
-	//Roads under edition
+public class RoadsVM{
 	private Road currentRoad = null;
 	
 	public Road getcurrentRoad(){
 		return currentRoad;
-	}
-	
-	public List<Infraction> getInfractions(){
-		EntityManager em = DesktopEntityManagerManager.getDesktopEntityManager();
-		return em.createQuery("SELECT i FROM Infraction i", Infraction.class).getResultList();
 	}
 	
 	public List<Road> getRoads(){
@@ -37,7 +28,7 @@ public class RoadsVM {
 	@NotifyChange("roads")
 	public void delete(@BindingParam("r") Road road){
 		EntityManager em = DesktopEntityManagerManager.getDesktopEntityManager();
-		TransactionUtils.doTransaction(em, __ ->{
+		TransactionUtils.doTransaction(em, __ -> {
 			em.remove(road);
 		});
 	}
@@ -48,25 +39,22 @@ public class RoadsVM {
 		this.currentRoad = new Road();
 	}
 	
-
 	@Command
 	@NotifyChange({"roads", "currentRoad"})
 	public void save(){
 		EntityManager em = DesktopEntityManagerManager.getDesktopEntityManager();
-		TransactionUtils.doTransaction(em, __ ->{
+		TransactionUtils.doTransaction(em, __ -> {
 			em.persist(this.currentRoad);
 		});
 		this.currentRoad = null;
 	}
 	
-
 	@Command
 	@NotifyChange("currentRoad")
 	public void cancel(){
-		this.currentRoad = null
+		this.currentRoad = null;
 	}
 	
-
 	@Command
 	@NotifyChange("currentRoad")
 	public void edit(@BindingParam("r") Road road){

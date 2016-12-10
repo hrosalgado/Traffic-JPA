@@ -3,7 +3,6 @@ package SI_ESEI.Traffic.webapp;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.transaction.Transaction;
 
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
@@ -14,9 +13,7 @@ import SI_ESEI.Traffic.Road;
 import SI_ESEI.Traffic.TransactionUtils;
 import SI_ESEI.Traffic.webapp.util.DesktopEntityManagerManager;
 
-public class KmPointsVM {
-
-	//Kmpoint under edition
+public class KmPointsVM{
 	private KmPoint currentKmPoint = null;
 	
 	public KmPoint getCurrentKmPoint(){
@@ -65,9 +62,8 @@ public class KmPointsVM {
 	}
 	
 	@Command
-	@NotifyChange("currentKmPoint"){
-		public void edit(@BindingParam("km") KmPoint kmPoint){
-			this.currentKmPoint = kmPoint;
-		}
+	@NotifyChange("currentKmPoint")
+	public void edit(@BindingParam("km") KmPoint kmPoint){
+		this.currentKmPoint = kmPoint;
 	}
 }

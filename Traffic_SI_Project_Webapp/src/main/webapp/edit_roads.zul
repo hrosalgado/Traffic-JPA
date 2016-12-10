@@ -1,9 +1,9 @@
 <zk>
-	<include src="menu.zul"/>
+	<include src="menu.zul"></include>
 	<window title="Edit Roads" border="normal"
 		apply="org.zkoss.bind.BindComposer"
 		viewModel = "@id('vm') @init('SI_ESEI.Traffic.webapp.RoadsVM')">
-		<window title="e editor" border="normal" mode="normal" visible="@load(vm.currentRoad ne null)">
+		<window title="e editor" border="normal" mode="modal" visible="@load(vm.currentRoad ne null)">
 		
 			Name: <textbox value="@load(vm.currentRoad.name) @save(vm.currentRoad.name, before='save')"></textbox>
 			
@@ -13,6 +13,51 @@
 			
 			Maximum Speed: <textbox value="@load(vm.currentRoad.maxSpeed) @save(vm.currentRoad.maxSpeed, before='save')"></textbox>
 			
+			<hbox>
+				<button label="save" onClick="@command('save')"></button>
+				<button label="cancel" onClick="@command('cancel')"></button>
+			</hbox>
 		</window>
+		
+		<groupbox mold="3d" closable="false">
+			<caption label="Road list">
+				<button label="new" onClick="@command('newRoad')"></button>
+			</caption>
+			
+			<listbox model="@load(vm.roads)">
+				<listhead>
+					<listheader label="name"></listheader>
+					<listheader label="type"></listheader>
+					<listheader label="toll"></listheader>
+					<listheader label="max. speed"></listheader>
+					<listheader label="actions"></listheader>
+				</listhead>
+				
+				<template name="model">
+					<listitem>
+						<listcell>
+							<label value="@load(each.name)"></label>
+						</listcell>
+						
+						<listcell>
+							<label value="@load(each.type)"></label>
+						</listcell>
+						
+						<listcell>
+							<label value="@load(each.toll)"></label>
+						</listcell>
+						
+						<listcell>
+							<label value="@load(each.maxSpeed)"></label>
+						</listcell>
+						
+						<listcell>
+							<button label="delete" onClick="@command('delete', e = each)"></button>
+							<button label="edit" onClick="@command('edit', e = each)"></button>
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</groupbox>
 	</window>
 </zk>

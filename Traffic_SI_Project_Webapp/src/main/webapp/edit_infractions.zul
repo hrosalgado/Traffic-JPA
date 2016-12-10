@@ -20,6 +20,24 @@
 				</template>
 			</combobox>
 			
+			DateTime:
+			<combobox model="@load(vm.dateTimes)"
+						selectedItem="@load(vm.currentInfraction.dateTime) @save(vm.currentInfraction.dateTime, before='save')"
+			>
+				<template name="model">
+					<comboitem label="@load(each.day)"></comboitem>
+				</template>
+			</combobox>
+			
+			Road:
+			<combobox model="@load(vm.roads)"
+						selectedItem="@load(vm.currentInfraction.road) @save(vm.currentInfraction.road, before='save')"
+			>
+				<template name="model">
+					<comboitem label="@load(each.name)"></comboitem>
+				</template>
+			</combobox>
+			
 			<hbox>
 				<button label="save" onClick="@command('save')"></button>
 				<button label="cancel" onClick="@command('cancel')"></button>
@@ -37,6 +55,8 @@
 					<listheader label="description"></listheader>
 					<listheader label="penalty"></listheader>
 					<listheader label="driver"></listheader>
+					<listheader label="datetime"></listheader>
+					<listheader label="road"></listheader>
 					<listheader label="actions"></listheader>
 				</listhead>
 				
@@ -46,6 +66,8 @@
 						<listcell><label value="@load(each.description)"></label></listcell>
 						<listcell><label value="@load(each.penalty)"></label></listcell>
 						<listcell><label value="@load(each.driver)"></label></listcell>
+						<listcell><label value="@load(each.dateTime)"></label></listcell>
+						<listcell><label value="@load(each.road)"></label></listcell>
 						<listcell>
 							<button label="delete" onClick="@command('delete', e = each)"/>
 							<button label="edit" onClick="@command('edit', e = each)"/>

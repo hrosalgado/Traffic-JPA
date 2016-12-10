@@ -20,7 +20,7 @@
 			
 			Driver
 			<combobox model="@load(vm.drivers)"
-						selectedItem="@load(vm.currentVehicle.driver) @save(vm.currentVehicle.driver, before='save')">
+						selectedItem="@load(vm.currentVehicle.drivers) @save(vm.currentVehicle.drivers, before='save')">
 				<template name="model">
 					<comboitem label="@load(each.age)"></comboitem>
 				</template>
@@ -33,7 +33,7 @@
 		</window>
 		
 		<groupbox mold="3d" closable="false">
-			<caption label="Vehicles list">
+			<caption label="Vehicle list">
 				<button label="new" onClick="@command('newVehicle')"></button>
 			</caption>
 			
@@ -46,19 +46,42 @@
 					<listheader label="antiquity"></listheader>
 					<listheader label="drive permission"></listheader>
 					<listheader label="electric"></listheader>
-					<listheader label="actions"></listheader>
+					<listheader label="driver"></listheader>
+					<listheader label="options"></listheader>
 				</listhead>
 				
 				<template name="model">
 					<listitem>
 						<listcell>
 							<label value="@load(each.type)"></label>
+						</listcell>
+						
+						<listcell>
 							<label value="@load(each.brand)"></label>
+						</listcell>
+						
+						<listcell>
 							<label value="@load(each.carSpaces)"></label>
+						</listcell>
+						
+						<listcell>
 							<label value="@load(each.passengers)"></label>
+						</listcell>
+						
+						<listcell>
 							<label value="@load(each.antiquity)"></label>
+						</listcell>
+						
+						<listcell>
 							<label value="@load(each.drivePermission)"></label>
+						</listcell>
+						
+						<listcell>
 							<label value="@load(each.electric)"></label>
+						</listcell>
+						
+						<listcell>
+							<label value="@load(each.drivers)"></label>
 						</listcell>
 						
 						<listcell>

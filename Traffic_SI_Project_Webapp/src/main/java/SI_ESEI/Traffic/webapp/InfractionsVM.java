@@ -8,8 +8,10 @@ import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.NotifyChange;
 
+import SI_ESEI.Traffic.DateTime;
 import SI_ESEI.Traffic.Driver;
 import SI_ESEI.Traffic.Infraction;
+import SI_ESEI.Traffic.Road;
 import SI_ESEI.Traffic.TransactionUtils;
 import SI_ESEI.Traffic.webapp.util.DesktopEntityManagerManager;
 
@@ -23,6 +25,16 @@ public class InfractionsVM{
 	public List<Driver> getDrivers(){
 		EntityManager em = DesktopEntityManagerManager.getDesktopEntityManager();
 		return em.createQuery("SELECT d FROM Driver d", Driver.class).getResultList();
+	}
+	
+	public List<DateTime> getDateTimes(){
+		EntityManager em = DesktopEntityManagerManager.getDesktopEntityManager();
+		return em.createQuery("SELECT dt FROM DateTime dt", DateTime.class).getResultList();
+	}
+	
+	public List<Road> getRoads(){
+		EntityManager em = DesktopEntityManagerManager.getDesktopEntityManager();
+		return em.createQuery("SELECT r FROM Road r", Road.class).getResultList();
 	}
 	
 	public List<Infraction> getInfractions(){

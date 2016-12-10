@@ -10,7 +10,7 @@
 			
 			Experience: <textbox value="@load(vm.currentDriver.experience) @save(vm.currentDriver.experience, before='save')"></textbox>
 			
-			Previous infractions: <textbox value="@load(vm.currentDriver.previousInfractions) @save(vm.currentDriver.previousInfractionss, before='save')"></textbox>
+			Previous infractions: <textbox value="@load(vm.currentDriver.previousInfractions) @save(vm.currentDriver.previousInfractions, before='save')"></textbox>
 			
 			Ill <textbox value="@load(vm.currentDriver.ill) @save(vm.currentDriver.ill, before='save')"></textbox>
 			
