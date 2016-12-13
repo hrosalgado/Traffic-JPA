@@ -79,8 +79,8 @@
 						</listcell>
 						
 						<listcell>
-							<button label="delete" onClick="@command('delete', e = each)"></button>
-							<button label="edit" onClick="@command('edit', e = each)"></button>
+							<button label="delete" onClick="@command('delete', dt = each)"></button>
+							<button label="edit" onClick="@command('edit', dt = each)"></button>
 						</listcell>
 					</listitem>
 				</template>

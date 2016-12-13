@@ -69,8 +69,8 @@
 						<listcell><label value="@load(each.dateTime)"></label></listcell>
 						<listcell><label value="@load(each.road)"></label></listcell>
 						<listcell>
-							<button label="delete" onClick="@command('delete', e = each)"/>
-							<button label="edit" onClick="@command('edit', e = each)"/>
+							<button label="delete" onClick="@command('delete', i = each)"/>
+							<button label="edit" onClick="@command('edit', i = each)"/>
 						</listcell>	
 					</listitem>
 				</template>

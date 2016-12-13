@@ -32,7 +32,7 @@ public class KmPointsVM{
 	
 	@Command
 	@NotifyChange("kmpoints")
-	public void detele(@BindingParam("km") KmPoint kmPoint){
+	public void detele(@BindingParam("kmp") KmPoint kmPoint){
 		EntityManager em = DesktopEntityManagerManager.getDesktopEntityManager();
 		TransactionUtils.doTransaction(em, __ ->{
 			em.remove(kmPoint);
@@ -63,7 +63,7 @@ public class KmPointsVM{
 	
 	@Command
 	@NotifyChange("currentKmPoint")
-	public void edit(@BindingParam("km") KmPoint kmPoint){
+	public void edit(@BindingParam("kmp") KmPoint kmPoint){
 		this.currentKmPoint = kmPoint;
 	}
 }

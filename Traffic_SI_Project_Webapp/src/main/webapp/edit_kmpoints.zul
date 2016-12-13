@@ -52,8 +52,8 @@
 						<listcell><label value="@load(each.signposting)"></label></listcell>
 						<listcell><label value="@load(each.radar)"></label></listcell>
 						<listcell>
-							<button label="delete" onClick="@command('delete', e = each)"/>
-							<button label="edit" onClick="@command('edit', e = each)"/>
+							<button label="delete" onClick="@command('delete', kmp = each)"/>
+							<button label="edit" onClick="@command('edit', kmp = each)"/>
 						</listcell>	
 					</listitem>
 				</template>
