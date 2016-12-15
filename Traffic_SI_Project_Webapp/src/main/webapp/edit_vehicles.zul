@@ -14,17 +14,24 @@
 			
 			Antiquity <textbox value="@load(vm.currentVehicle.antiquity) @save(vm.currentVehicle.antiquity, before='save')"></textbox>
 			
-			Drive permission: <textbox value="@laod(vm.currentVehicle.drivePermission) @save(vm.currentVehicle.drivePermission, before='save')"></textbox>
+			Drive permission: <textbox value="@load(vm.currentVehicle.drivePermission) @save(vm.currentVehicle.drivePermission, before='save')"></textbox>
 			
 			Electric: <textbox value="@load(vm.currentVehicle.electric) @save(vm.currentVehicle.electric, before='save')"></textbox>
 			
 			Driver
-			<combobox model="@load(vm.drivers)"
+			<listbox model="@load(vm.drivers)" multiple="true"
 						selectedItem="@load(vm.currentVehicle.drivers) @save(vm.currentVehicle.drivers, before='save')">
+				
+				<listhead>
+					<listheader label="Driver"></listheader>
+				</listhead>
+				
 				<template name="model">
-					<comboitem label="@load(each.age)"></comboitem>
+					<listitem><listcell><label value="@load(each.age)"/></listcell></listitem>
 				</template>
-			</combobox>
+				
+				
+			</listbox>
 			
 			<hbox>
 				<button label="save" onClick="@command('save')"></button>
