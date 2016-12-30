@@ -41,6 +41,7 @@
 					<listheader label="black point"></listheader>
 					<listheader label="signposting"></listheader>
 					<listheader label="radar"></listheader>
+					<listheader label="road"></listheader>
 					<listheader label="actions"></listheader>
 				</listhead>
 				
@@ -48,9 +49,10 @@
 					<listitem>
 						<listcell><label value="@load(each.start)"></label></listcell>
 						<listcell><label value="@load(each.end)"></label></listcell>
-						<listcell><label value="@load(each.blackPoint)"></label></listcell>
-						<listcell><label value="@load(each.signposting)"></label></listcell>
-						<listcell><label value="@load(each.radar)"></label></listcell>
+						<listcell><label value="@load(each.blackPoint?'Yes':'No')"></label></listcell>
+						<listcell><label value="@load(each.signposting?'Yes':'No')"></label></listcell>
+						<listcell><label value="@load(each.radar?'Yes':'No')"></label></listcell>
+						<listcell><label value="@load(each.road.name)"></label></listcell>
 						<listcell>
 							<button label="delete" onClick="@command('delete', kmp = each)"/>
 							<button label="edit" onClick="@command('edit', kmp = each)"/>

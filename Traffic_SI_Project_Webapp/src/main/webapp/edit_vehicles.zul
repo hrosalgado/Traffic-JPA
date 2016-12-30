@@ -1,8 +1,8 @@
 <zk>
-	<include src = "menu.zul"></include>
-	<window title = "Edit vehicles" border = "normal"
-		apply = "org.zkoss.bind.BindComposer"
-		viewModel = "@id('vm') @init('SI_ESEI.Traffic.webapp.VehiclesVM')">
+	<include src = "index.zul"></include>
+	<window border="normal"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('SI_ESEI.Traffic.webapp.VehiclesVM')">
 		<window title="Vehicle editor" border="normal" mode="modal" visible="@load(vm.currentVehicle ne null)">
 			Type: <textbox value="@load(vm.currentVehicle.type) @save(vm.currentVehicle.type, before='save')"></textbox>
 			
@@ -14,13 +14,13 @@
 			
 			Antiquity <textbox value="@load(vm.currentVehicle.antiquity) @save(vm.currentVehicle.antiquity, before='save')"></textbox>
 			
-			Drive permission: <textbox value="@laod(vm.currentVehicle.drivePermission) @save(vm.currentVehicle.drivePermission, before='save')"></textbox>
+			Drive permission: <textbox value="@load(vm.currentVehicle.drivePermission) @save(vm.currentVehicle.drivePermission, before='save')"></textbox>
 			
 			Electric: <textbox value="@load(vm.currentVehicle.electric) @save(vm.currentVehicle.electric, before='save')"></textbox>
 			
 			Driver
 			<combobox model="@load(vm.drivers)"
-						selectedItem="@load(vm.currentVehicle.drivers) @save(vm.currentVehicle.drivers, before='save')">
+						selectedItems="@load(vm.currentVehicle.drivers) @save(vm.currentVehicle.drivers, before='save')">
 				<template name="model">
 					<comboitem label="@load(each.age)"></comboitem>
 				</template>
@@ -73,11 +73,11 @@
 						</listcell>
 						
 						<listcell>
-							<label value="@load(each.drivePermission)"></label>
+							<label value="@load(each.drivePermission?'Yes':'No')"></label>
 						</listcell>
 						
 						<listcell>
-							<label value="@load(each.electric)"></label>
+							<label value="@load(each.electric?'Yes':'No')"></label>
 						</listcell>
 						
 						<listcell>

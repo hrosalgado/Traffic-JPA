@@ -37,9 +37,9 @@ public class KmPointTest extends SQLBasedTest{
 		doTransaction(emf, em -> {
 			kmpoint.setStart(12);
 			kmpoint.setEnd(13);
-			kmpoint.setblackPoint(1);
-			kmpoint.setSignposting(1);
-			kmpoint.setRadar(0);
+			kmpoint.setblackPoint(true);
+			kmpoint.setSignposting(true);
+			kmpoint.setRadar(false);
 			
 			em.persist(kmpoint);
 		});
@@ -87,9 +87,9 @@ public class KmPointTest extends SQLBasedTest{
 			KmPoint kmpoint = em.find(KmPoint.class, id);
 			kmpoint.setStart(13);
 			kmpoint.setEnd(14);
-			kmpoint.setblackPoint(1);
-			kmpoint.setSignposting(2);
-			kmpoint.setRadar(5);
+			kmpoint.setblackPoint(true);
+			kmpoint.setSignposting(true);
+			kmpoint.setRadar(true);
 		});
 		
 		// Check

@@ -71,11 +71,11 @@
 						</listcell>
 						
 						<listcell>
-							<label value="@load(each.weekend)"></label>
+							<label value="@load(each.weekend?'Yes':'No')"></label>
 						</listcell>
 						
 						<listcell>
-							<label value="@load(each.holiday)"></label>
+							<label value="@load(each.holiday?'Yes':'No')"></label>
 						</listcell>
 						
 						<listcell>

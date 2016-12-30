@@ -44,7 +44,7 @@
 						</listcell>
 						
 						<listcell>
-							<label value="@load(each.toll)"></label>
+							<label value="@load(each.toll?'Yes':'No')"></label>
 						</listcell>
 						
 						<listcell>

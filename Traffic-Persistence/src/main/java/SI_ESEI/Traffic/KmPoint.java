@@ -34,17 +34,17 @@ public class KmPoint{
 	// blackPoint
 	@Column(name = "black_point")
 	@NotNull
-	private int blackPoint;
+	private Boolean blackPoint;
 	
 	// signposting
 	@Column(name = "signposting")
 	@NotNull
-	private int signposting;
+	private Boolean signposting;
 	
 	// radar
 	@Column(name = "radar")
 	@NotNull
-	private int radar;
+	private Boolean radar;
 	
 	public int getId(){
 		return id;
@@ -66,27 +66,27 @@ public class KmPoint{
 		this.end = end;
 	}
 	
-	public int getblackPoint(){
+	public Boolean getblackPoint(){
 		return blackPoint;
 	}
 	
-	public void setblackPoint(int blackPoint){
+	public void setblackPoint(Boolean blackPoint){
 		this.blackPoint = blackPoint;
 	}
 	
-	public int getSignposting(){
+	public Boolean getSignposting(){
 		return signposting;
 	}
 	
-	public void setSignposting(int signposting){
+	public void setSignposting(Boolean signposting){
 		this.signposting = signposting;
 	}
 	
-	public int getRadar(){
+	public Boolean getRadar(){
 		return radar;
 	}
 	
-	public void setRadar(int radar){
+	public void setRadar(Boolean radar){
 		this.radar = radar;
 	}
 	
