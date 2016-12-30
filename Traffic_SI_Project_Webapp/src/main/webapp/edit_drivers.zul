@@ -2,7 +2,7 @@
 	<include src="index.zul"></include>
 	<window border="normal" apply="org.zkoss.bind.BindComposer"
 		viewModel="@id('vm') @init('SI_ESEI.Traffic.webapp.DriversVM')">
-		<window title="Driver editor" border="normal" mode="modal" visible="@load(vm.currentDriver ne null)" width="50%">
+		<window title="Driver editor" border="normal" mode="modal" visible="@load(vm.currentDriver ne null)" width="75%">
 			<groupbox mold="3d" closable="false">
 				<caption>
 					<label value="New driver" style="font-weight: bold; font-size: 14pt"></label>
@@ -10,10 +10,10 @@
 				
 				<listbox>
 					<listhead>
-						<listheader><label value="Field" style="font-weight: bold; font-size: 12pt"></label></listheader>
-						<listheader><label value="Description" style="font-weight: bold; font-size: 12pt"></label></listheader>
-						<listheader><label value="Value" style="font-weight: bold; font-size: 12pt"></label></listheader>
-						<listheader><label value="Message" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="15%"><label value="Field" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="35%"><label value="Description" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="20%"><label value="Value" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="30%"><label value="Message" style="font-weight: bold; font-size: 12pt"></label></listheader>
 					</listhead>
 					
 					<listitem>
@@ -101,8 +101,8 @@
 						</listcell>
 						
 						<listcell>
-							<button label="delete" onClick="@command('delete', d = each)"></button>
 							<button label="edit" onClick="@command('edit', d = each)"></button>
+							<button label="delete" onClick="@command('delete', d = each)"></button>
 						</listcell>
 					</listitem>
 				</template>

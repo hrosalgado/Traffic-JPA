@@ -59,12 +59,12 @@ public class Vehicle{
 	// Drive permission
 	@Column(name = "drive_permission")
 	@NotNull
-	private Boolean drivePermission;
+	private String drivePermission;
 	
 	// Electric
 	@Column(name = "electric")
 	@NotNull
-	private Boolean electric;
+	private String electric;
 	
 	public int getId(){
 		return id;
@@ -110,19 +110,19 @@ public class Vehicle{
 		this.antiquity = antiquity;
 	}
 
-	public Boolean getDrivePermission(){
+	public String getDrivePermission(){
 		return drivePermission;
 	}
 
-	public void setDrivePermission(Boolean drivePermission){
+	public void setDrivePermission(String drivePermission){
 		this.drivePermission = drivePermission;
 	}
 
-	public Boolean getElectric(){
+	public String getElectric(){
 		return electric;
 	}
 
-	public void setElectric(Boolean electric){
+	public void setElectric(String electric){
 		this.electric = electric;
 	}
 	
