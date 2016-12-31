@@ -48,14 +48,14 @@
 					<listitem>
 						<listcell><label value="Season"></label></listcell>
 						<listcell><label value="Choose a season between spring, summer, autumn or winter"></label></listcell>
-						<listcell><textbox placeholder="rainy" value="@save(vm.currentDateTime.season, before='save')"></textbox></listcell>
+						<listcell><textbox placeholder="winter" value="@save(vm.currentDateTime.season, before='save')"></textbox></listcell>
 						<listcell><label value="@load(vm.seasonError)"></label></listcell>
 					</listitem>
 					
 					<listitem>
 						<listcell><label value="Weather"></label></listcell>
 						<listcell><label value="Choose a weather between sunny, cloudy, rainy or foggy"></label></listcell>
-						<listcell><textbox placeholder="winter" value="@save(vm.currentDateTime.weather, before='save')"></textbox></listcell>
+						<listcell><textbox placeholder="rainy" value="@save(vm.currentDateTime.weather, before='save')"></textbox></listcell>
 						<listcell><label value="@load(vm.weatherError)"></label></listcell>
 					</listitem>
 					

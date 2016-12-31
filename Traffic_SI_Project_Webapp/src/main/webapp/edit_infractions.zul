@@ -1,42 +1,91 @@
 <zk>
-	<include src="menu.zul"></include>
-	<window title="Edit infractions" border="normal"
-			apply="org.zkoss.bind.BindComposer"
+	<include src="index.zul"></include>
+	<window border="normal" apply="org.zkoss.bind.BindComposer"
 			viewModel="@id('vm') @init('SI_ESEI.Traffic.webapp.InfractionsVM')"
 	>
-		<window title="Infraction editor" border="normal" mode="modal" visible="@load(vm.currentInfraction ne null)">
-			Type: <textbox value="@load(vm.currentInfraction.type) @save(vm.currentInfraction.type, before='save')"></textbox>
-			
-			Description: <textbox value="@load(vm.currentInfraction.description) @save(vm.currentInfraction.description, before='save')"></textbox>
-			
-			Penalty: <textbox value="@load(vm.currentInfraction.penalty) @save(vm.currentInfraction.penalty, before='save')"></textbox>
-			
-			Driver:
-			<combobox model="@load(vm.drivers)"
-						selectedItem="@load(vm.currentInfraction.driver) @save(vm.currentInfraction.driver, before='save')"
-			>
-				<template name="model">
-					<comboitem label="@load(each.age)"></comboitem>
-				</template>
-			</combobox>
-			
-			DateTime:
-			<combobox model="@load(vm.dateTimes)"
-						selectedItem="@load(vm.currentInfraction.dateTime) @save(vm.currentInfraction.dateTime, before='save')"
-			>
-				<template name="model">
-					<comboitem label="@load(each.day)"></comboitem>
-				</template>
-			</combobox>
-			
-			Road:
-			<combobox model="@load(vm.roads)"
-						selectedItem="@load(vm.currentInfraction.road) @save(vm.currentInfraction.road, before='save')"
-			>
-				<template name="model">
-					<comboitem label="@load(each.name)"></comboitem>
-				</template>
-			</combobox>
+		<window title="Infraction editor" border="normal" mode="modal" visible="@load(vm.currentInfraction ne null)" width="75%">
+			<groupbox mold="3d" closable="false">
+				<caption>
+					<label value="New infraction" style="font-weight: bold; font-size: 14pt"></label>
+				</caption>
+				
+				<listbox>
+					<listhead>
+						<listheader width="15%"><label value="Field" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="35%"><label value="Description" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="20%"><label value="Value" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="30%"><label value="Message" style="font-weight: bold; font-size: 12pt"></label></listheader>
+					</listhead>
+					
+					<listitem>
+						<listcell><label value="Type"></label></listcell>
+						<listcell><label value="Type of the infraction: low, medium or high."></label></listcell>
+						<listcell><textbox placeholder="Low" value="@save(vm.currentInfraction.type, before='save')"></textbox></listcell>
+						<listcell><label value="@load(vm.typeError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Description"></label></listcell>
+						<listcell><label value="Description of the infraction."></label></listcell>
+						<listcell>
+							<textbox placeholder="You have exceeded the allowed speed limit" value="@save(vm.currentInfraction.description, before='save')"></textbox>
+						</listcell>
+						<listcell><label value=""></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Penalty"></label></listcell>
+						<listcell><label value="Amount of money"></label></listcell>
+						<listcell><intbox placeholder="100" value="@save(vm.currentInfraction.penalty, before='save')"></intbox></listcell>
+						<listcell><label value="@load(vm.penaltyError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Driver"></label></listcell>
+						<listcell><label value="Choose a driver"></label></listcell>
+						<listcell>
+							<combobox model="@load(vm.drivers)"
+										selectedItem="@load(vm.currentInfraction.driver) @save(vm.currentInfraction.driver, before='save')"
+							>
+								<template name="model">
+									<comboitem label="@load(each.age)"></comboitem>
+								</template>
+							</combobox>
+						</listcell>
+						<listcell><label value=""></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Datetime"></label></listcell>
+						<listcell><label value="Choose a date"></label></listcell>
+						<listcell>
+							<combobox model="@load(vm.dateTimes)"
+										selectedItem="@load(vm.currentInfraction.dateTime) @save(vm.currentInfraction.dateTime, before='save')"
+							>
+								<template name="model">
+									<comboitem label="@load(each.day)"></comboitem>
+								</template>
+							</combobox>
+						</listcell>
+						<listcell><label value=""></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Road"></label></listcell>
+						<listcell><label value="Choose a road"></label></listcell>
+						<listcell>
+							<combobox model="@load(vm.roads)"
+										selectedItem="@load(vm.currentInfraction.road) @save(vm.currentInfraction.road, before='save')"
+							>
+								<template name="model">
+									<comboitem label="@load(each.name)"></comboitem>
+								</template>
+							</combobox>
+						</listcell>
+						<listcell><label value=""></label></listcell>
+					</listitem>
+				</listbox>
+			</groupbox>
 			
 			<hbox>
 				<button label="save" onClick="@command('save')"></button>
@@ -44,9 +93,13 @@
 			</hbox>
 		</window>
 		
+		<caption>
+			<button label="New infraction" onClick="@command('newInfraction')"></button>
+		</caption>
+		
 		<groupbox mold="3d" closable="false">
-			<caption label="Infraction list">
-				<button label="new" onClick="@command('newInfraction')"></button>
+			<caption>
+				<label value="Infractions list" style="font-weight: bold; font-size: 14pt"></label>
 			</caption>
 			
 			<listbox model="@load(vm.infractions)">
@@ -65,12 +118,12 @@
 						<listcell><label value="@load(each.type)"></label></listcell>
 						<listcell><label value="@load(each.description)"></label></listcell>
 						<listcell><label value="@load(each.penalty)"></label></listcell>
-						<listcell><label value="@load(each.driver)"></label></listcell>
-						<listcell><label value="@load(each.dateTime)"></label></listcell>
-						<listcell><label value="@load(each.road)"></label></listcell>
+						<listcell><label value="@load(each.driver.age)"></label></listcell>
+						<listcell><label value="@load(each.dateTime.year)"></label></listcell>
+						<listcell><label value="@load(each.road.name)"></label></listcell>
 						<listcell>
-							<button label="delete" onClick="@command('delete', i = each)"/>
 							<button label="edit" onClick="@command('edit', i = each)"/>
+							<button label="delete" onClick="@command('delete', i = each)"/>
 						</listcell>	
 					</listitem>
 				</template>
