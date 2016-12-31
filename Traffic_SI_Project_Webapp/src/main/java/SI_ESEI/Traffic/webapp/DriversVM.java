@@ -141,22 +141,22 @@ public class DriversVM{
 	private String illError = "-";
 	
 	public String getAgeError(){
-		return ageError;
+		return this.ageError;
 	}
 	
 	public String getSexError(){
-		return sexError;
+		return this.sexError;
 	}
 	
 	public String getExperienceError(){
-		return experienceError;
+		return this.experienceError;
 	}
 	
 	public String getPreviousInfractionsError(){
-		return previousInfractionsError;
+		return this.previousInfractionsError;
 	}
 	
 	public String getIllError(){
-		return illError;
+		return this.illError;
 	}
 }

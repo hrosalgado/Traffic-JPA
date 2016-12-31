@@ -1,17 +1,51 @@
 <zk>
-	<include src="menu.zul"></include>
-	<window title="Edit Roads" border="normal"
-		apply="org.zkoss.bind.BindComposer"
-		viewModel = "@id('vm') @init('SI_ESEI.Traffic.webapp.RoadsVM')">
-		<window title="e editor" border="normal" mode="modal" visible="@load(vm.currentRoad ne null)">
-		
-			Name: <textbox value="@load(vm.currentRoad.name) @save(vm.currentRoad.name, before='save')"></textbox>
-			
-			Type: <textbox value="@load(vm.currentRoad.type) @save(vm.currentRoad.type, before='save')"></textbox>
-			
-			Toll: <textbox value="@load(vm.currentRoad.toll) @save(vm.currentRoad.toll, before='save')"></textbox>
-			
-			Maximum Speed: <textbox value="@load(vm.currentRoad.maxSpeed) @save(vm.currentRoad.maxSpeed, before='save')"></textbox>
+	<include src="index.zul"></include>
+	<window border="normal" apply="org.zkoss.bind.BindComposer"
+		viewModel = "@id('vm') @init('SI_ESEI.Traffic.webapp.RoadsVM')"
+	>
+		<window title="e editor" border="normal" mode="modal" visible="@load(vm.currentRoad ne null)" width="75%">
+			<groupbox mold="3d" closable="false">
+				<caption>
+					<label value="New road" style="font-weight: bold; font-size: 14pt"></label>
+				</caption>
+				
+				<listbox>
+					<listhead>
+						<listheader width="15%"><label value="Field" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="35%"><label value="Description" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="20%"><label value="Value" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="30%"><label value="Message" style="font-weight: bold; font-size: 12pt"></label></listheader>
+					</listhead>
+					
+					<listitem>
+						<listcell><label value="Name"></label></listcell>
+						<listcell><label value="Name of the road"></label></listcell>
+						<listcell><textbox placeholder="A-52" value="@save(vm.currentRoad.name, before='save')"></textbox></listcell>
+						<listcell><label value="@load(vm.nameError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Type"></label></listcell>
+						<listcell><label value="Type of road: highway, motorway, national, ..."></label></listcell>
+						<listcell><textbox placeholder="Highway" value="@save(vm.currentRoad.type, before='save')"></textbox></listcell>
+						<listcell><label value="@load(vm.typeError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Toll"></label></listcell>
+						<listcell><label value="Yes, if the road has toll; No, if not."></label></listcell>
+						<listcell><textbox placeholder="No" value="@save(vm.currentRoad.toll, before='save')"></textbox></listcell>
+						<listcell><label value="@load(vm.tollError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Max. Speed"></label></listcell>
+						<listcell><label value="Max. Speed allowed in the road."></label></listcell>
+						<listcell><intbox placeholder="120" value="@save(vm.currentRoad.maxSpeed, before='save')"></intbox></listcell>
+						<listcell><label value="@load(vm.maxSpeedError)"></label></listcell>
+					</listitem>
+				</listbox>
+			</groupbox>
 			
 			<hbox>
 				<button label="save" onClick="@command('save')"></button>
@@ -19,9 +53,13 @@
 			</hbox>
 		</window>
 		
+		<caption>
+			<button label="New road" onClick="@command('newRoad')"></button>
+		</caption>
+		
 		<groupbox mold="3d" closable="false">
-			<caption label="Road list">
-				<button label="new" onClick="@command('newRoad')"></button>
+			<caption>
+				<label value="Roads list" style="font-weight: bold; font-size: 14pt"></label>
 			</caption>
 			
 			<listbox model="@load(vm.roads)">
@@ -44,16 +82,16 @@
 						</listcell>
 						
 						<listcell>
-							<label value="@load(each.toll?'Yes':'No')"></label>
+							<label value="@load(each.toll)"></label>
 						</listcell>
 						
 						<listcell>
 							<label value="@load(each.maxSpeed)"></label>
 						</listcell>
 						
-						<listcell>
-							<button label="delete" onClick="@command('delete', r = each)"></button>
+						<listcell>							
 							<button label="edit" onClick="@command('edit', r = each)"></button>
+							<button label="delete" onClick="@command('delete', r = each)"></button>
 						</listcell>
 					</listitem>
 				</template>

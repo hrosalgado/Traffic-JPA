@@ -152,30 +152,30 @@ public class VehiclesVM{
 	private String electricError = "-";
 	
 	public String getTypeError(){
-		return typeError;
+		return this.typeError;
 	}
 	
 	public String getBrandError(){
-		return brandError;
+		return this.brandError;
 	}
 	
 	public String getCarSpacesError(){
-		return carSpacesError;
+		return this.carSpacesError;
 	}
 	
 	public String getPassengersError(){
-		return passengersError;
+		return this.passengersError;
 	}
 	
 	public String getAntiquityError(){
-		return antiquityError;
+		return this.antiquityError;
 	}
 	
 	public String getDrivePermissionError(){
-		return drivePermissionError;
+		return this.drivePermissionError;
 	}
 	
 	public String getElectricError(){
-		return electricError;
+		return this.electricError;
 	}
 }

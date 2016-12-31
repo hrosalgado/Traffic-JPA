@@ -40,24 +40,92 @@ public class RoadsVM{
 	}
 	
 	@Command
-	@NotifyChange({"roads", "currentRoad"})
+	@NotifyChange({"roads", "currentRoad", "nameError", "typeError",
+				   "tollError", "maxSpeedError"})
 	public void save(){
-		EntityManager em = DesktopEntityManagerManager.getDesktopEntityManager();
-		TransactionUtils.doTransaction(em, __ -> {
-			em.persist(this.currentRoad);
-		});
-		this.currentRoad = null;
+		boolean flag;
+		int cont = 0;
+		
+		// Name
+		
+		
+		// Type
+		
+		
+		// Toll
+		if(!this.currentRoad.getToll().toLowerCase().equals("yes")
+			&& !this.currentRoad.getToll().toLowerCase().equals("no")){
+			this.tollError = "Incorrect value. Choose between Yes or No.";
+			cont++;
+		}else{
+			this.tollError = "-";
+		}
+		
+		// Max speed
+		if(this.currentRoad.getMaxSpeed() < 10){
+			this.maxSpeedError = "Incorrect value!";
+			cont++;
+		}else{
+			this.maxSpeedError = "-";
+		}
+		
+		if(cont == 0){
+			flag = true;
+		}else{
+			flag = false;
+		}
+		
+		if(flag){
+			EntityManager em = DesktopEntityManagerManager.getDesktopEntityManager();
+			TransactionUtils.doTransaction(em, __ -> {
+				em.persist(this.currentRoad);
+			});
+			this.currentRoad = null;
+			
+			this.nameError = "-";
+			this.typeError = "-";
+			this.tollError = "-";
+			this.maxSpeedError = "-";
+		}
 	}
 	
 	@Command
-	@NotifyChange("currentRoad")
+	@NotifyChange({"currentRoad", "nameError", "typeError",
+			   	   "tollError", "maxSpeedError"})
 	public void cancel(){
 		this.currentRoad = null;
+		
+		this.nameError = "-";
+		this.typeError = "-";
+		this.tollError = "-";
+		this.maxSpeedError = "-";
 	}
 	
 	@Command
 	@NotifyChange("currentRoad")
 	public void edit(@BindingParam("r") Road road){
 		this.currentRoad = road;
+	}
+	
+	// Error messages
+	private String nameError = "-";
+	private String typeError = "-";
+	private String tollError = "-";
+	private String maxSpeedError = "-";
+	
+	public String getNameError(){
+		return this.nameError;
+	}
+	
+	public String getTypeError(){
+		return this.typeError;
+	}
+	
+	public String getTollError(){
+		return this.tollError;
+	}
+	
+	public String getMaxSpeedError(){
+		return this.maxSpeedError;
 	}
 }

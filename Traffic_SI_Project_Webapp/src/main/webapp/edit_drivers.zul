@@ -1,7 +1,8 @@
 <zk>
 	<include src="index.zul"></include>
 	<window border="normal" apply="org.zkoss.bind.BindComposer"
-		viewModel="@id('vm') @init('SI_ESEI.Traffic.webapp.DriversVM')">
+		viewModel="@id('vm') @init('SI_ESEI.Traffic.webapp.DriversVM')"
+	>
 		<window title="Driver editor" border="normal" mode="modal" visible="@load(vm.currentDriver ne null)" width="75%">
 			<groupbox mold="3d" closable="false">
 				<caption>

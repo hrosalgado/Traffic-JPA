@@ -49,8 +49,8 @@ public class DateTimeTest extends SQLBasedTest{
 			dateTime.setHour(5);
 			dateTime.setSeason("autumn");
 			dateTime.setWeather("sunny");
-			dateTime.setWeekend(true);
-			dateTime.setHoliday(true);
+			dateTime.setWeekend("Yes");
+			dateTime.setHoliday("Yes");
 			
 			em.persist(dateTime);
 		});
@@ -104,8 +104,8 @@ public class DateTimeTest extends SQLBasedTest{
 			dateTime.setHour(9);
 			dateTime.setSeason("summer");
 			dateTime.setWeather("sunny");
-			dateTime.setWeekend(true);
-			dateTime.setHoliday(false);
+			dateTime.setWeekend("Yes");
+			dateTime.setHoliday("No");
 		});
 		
 		statement = jdbcConnection.createStatement();
