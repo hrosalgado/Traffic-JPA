@@ -46,24 +46,122 @@ public class KmPointsVM{
 	}
 	
 	@Command
-	@NotifyChange({"kmpoints", "currentKmPoint"})
+	@NotifyChange({"kmpoints", "currentKmPoint", "startError", "endError",
+				   "blackPointError", "signpostingError", "radarError"})
 	public void save(){
-		EntityManager em = DesktopEntityManagerManager.getDesktopEntityManager();
-		TransactionUtils.doTransaction(em, __ ->{
-			em.persist(this.currentKmPoint);
-		});
-		this.currentKmPoint = null;
+		boolean flag;
+		int cont = 0;
+		
+		// Start
+		if(this.currentKmPoint.getStart() < 0){
+			this.startError = "Incorrect value! It must be equal or more than 0";
+			cont++;
+		}else{
+			this.startError = "-";
+		}
+		
+		// End
+		if(this.currentKmPoint.getEnd() < 1){
+			this.endError = "Incorrect value! It must be more than 0.";
+			cont++;
+		}else if(this.currentKmPoint.getEnd() <= this.currentKmPoint.getStart()){
+			this.endError = "Incorrect value! It must be more than start.";
+			cont++;
+		}else{
+			this.endError = "-";
+		}
+		
+		// Black point
+		if(!this.currentKmPoint.getblackPoint().toLowerCase().equals("yes")
+			&& !this.currentKmPoint.getblackPoint().toLowerCase().equals("no")){
+			this.blackPointError = "Incorrect format! Choose between Yes or No.";
+			cont++;
+		}else{
+			this.blackPointError = "-";
+		}
+		
+		// Signposting
+		if(!this.currentKmPoint.getSignposting().toLowerCase().equals("yes")
+			&& !this.currentKmPoint.getSignposting().toLowerCase().equals("no")){
+			this.signpostingError = "Incorrect format! Choose between Yes or No.";
+			cont++;
+		}else{
+			this.signpostingError = "-";
+		}
+		
+		// Radar
+		if(!this.currentKmPoint.getRadar().toLowerCase().equals("yes")
+			&& !this.currentKmPoint.getRadar().toLowerCase().equals("no")){
+			this.radarError = "Incorrect format! Choose between Yes or No.";
+			cont++;
+		}else{
+			this.radarError = "-";
+		}
+		
+		if(cont == 0){
+			flag = true;
+		}else{
+			flag = false;
+		}
+		
+		if(flag){
+			EntityManager em = DesktopEntityManagerManager.getDesktopEntityManager();
+			TransactionUtils.doTransaction(em, __ ->{
+				em.persist(this.currentKmPoint);
+			});
+			this.currentKmPoint = null;
+			
+			this.startError = "-";
+			this.endError = "-";
+			this.blackPointError = "-";
+			this.signpostingError = "-";
+			this.radarError = "-";
+		}		
 	}
 	
 	@Command
-	@NotifyChange("currentKmPoint")
+	@NotifyChange({"currentKmPoint", "startError", "endError",
+			   	   "blackPointError", "signpostingError", "radarError"})
 	public void cancel(){
 		this.currentKmPoint = null;
+		
+		this.startError = "-";
+		this.endError = "-";
+		this.blackPointError = "-";
+		this.signpostingError = "-";
+		this.radarError = "-";
 	}
 	
 	@Command
 	@NotifyChange("currentKmPoint")
 	public void edit(@BindingParam("kmp") KmPoint kmPoint){
 		this.currentKmPoint = kmPoint;
+	}
+	
+	// Error messages
+	private String startError = "-";
+	private String endError = "-";
+	private String blackPointError = "-";
+	private String signpostingError = "-";
+	private String radarError = "-";
+	
+	public String getStartError(){
+		return this.startError;
+	}
+	
+	public String getEndError(){
+		return this.endError;
+	}
+	
+	public String getBlackPointError(){
+		return this.blackPointError;
+	}
+	
+	public String getSignpostingError(){
+		return this.signpostingError;
+	}
+	
+	public String getRadarError(){
+		return this.radarError;
 	}
 }
