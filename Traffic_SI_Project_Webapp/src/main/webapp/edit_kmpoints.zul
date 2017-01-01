@@ -1,27 +1,73 @@
 <zk>
-	<include src="menu.zul"></include>
-	<window title="Edit kmPoints" border="normal"
-		apply="org.zkoss.bind.BindComposer"
-		viewModel = "@id('vm') @init('SI_ESEI.Traffic.webapp.KmPointsVM')">
-		<window title="e editor" border="normal" mode="modal" visible="@load(vm.currentKmPoint ne null)">
-			Start: <textbox value="@load(vm.currentKmPoint.start) @save(vm.currentKmPoint.start, before='save')"></textbox>
-			
-			End: <textbox value="@load(vm.currentKmPoint.end) @save(vm.currentKmPoint.end, before='save')"></textbox>
-			
-			Black point: <textbox value="@load(vm.currentKmPoint.blackPoint) @save(vm.currentKmPoint.blackPoint, before='save')"></textbox>
-			
-			Singposting: <textbox value="@laod(vm.currentKmPoint.signposting) @save(vm.currentKmPoint.signposting, before='save')"></textbox>
-			
-			Radar: <textbox value="@load(vm.currentKmPoint.radar) @save(vm.currentKmPoint.radar, before='save')"></textbox>
-			
-			Road:
-			<combobox model="@load(vm.roads)"
-						selectedItem="@load(vm.currentKmPoint.road) @save(vm.currentKmPoint.road, before='save')"
-			>
-				<template name="model">
-					<comboitem label="@load(each.name)"></comboitem>
-				</template>
-			</combobox>
+	<include src="index.zul"></include>
+	<window border="normal" apply="org.zkoss.bind.BindComposer"
+		viewModel = "@id('vm') @init('SI_ESEI.Traffic.webapp.KmPointsVM')"
+	>
+		<window title="Km point editor" border="normal" mode="modal" visible="@load(vm.currentKmPoint ne null)" width="75%">
+			<groupbox mold="3d" closable="false">
+				<caption>
+					<label value="New km point" style="font-weight: bold; font-size: 14pt"></label>
+				</caption>
+				
+				<listbox>
+					<listhead>
+						<listheader width="15%"><label value="Field" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="35%"><label value="Description" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="20%"><label value="Value" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="30%"><label value="Message" style="font-weight: bold; font-size: 12pt"></label></listheader>
+					</listhead>
+					
+					<listitem>
+						<listcell><label value="Start"></label></listcell>
+						<listcell><label value="Start of the km point"></label></listcell>
+						<listcell><intbox placeholder="0" value="@save(vm.currentKmPoint.start, before='save')"></intbox></listcell>
+						<listcell><label value="@load(vm.startError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="End"></label></listcell>
+						<listcell><label value="End of the km point"></label></listcell>
+						<listcell><intbox placeholder="1" value="@save(vm.currentKmPoint.end, before='save')"></intbox></listcell>
+						<listcell><label value="@load(vm.endError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Black point"></label></listcell>
+						<listcell><label value="Yes, if the km point is a black point; No, if not."></label></listcell>
+						<listcell><textbox placeholder="No" value="@save(vm.currentKmPoint.blackPoint, before='save')"></textbox></listcell>
+						<listcell><label value="@load(vm.blackPointError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Signposting"></label></listcell>
+						<listcell><label value="Yes, if the km point has signposting; No, if not."></label></listcell>
+						<listcell><textbox placeholder="Yes" value="@save(vm.currentKmPoint.signposting, before='save')"></textbox></listcell>
+						<listcell><label value="@load(vm.signpostingError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Radar"></label></listcell>
+						<listcell><label value="Yes, if the km point has radar; No, if not."></label></listcell>
+						<listcell><textbox placeholder="No" value="@save(vm.currentKmPoint.radar, before='save')"></textbox></listcell>
+						<listcell><label value="@load(vm.radarError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Road"></label></listcell>
+						<listcell><label value="Choose the road who has this km point."></label></listcell>
+						<listcell>
+							<combobox model="@load(vm.roads)"
+										selectedItem="@load(vm.currentKmPoint.road) @save(vm.currentKmPoint.road, before='save')"
+							>
+								<template name="model">
+									<comboitem label="@load(each.name)"></comboitem>
+								</template>
+							</combobox>
+						</listcell>
+						<listcell><label value=""></label></listcell>
+					</listitem>
+				</listbox>
+			</groupbox>
 			
 			<hbox>
 				<button label="save" onClick="@command('save')"></button>
@@ -29,9 +75,13 @@
 			</hbox>
 		</window>
 		
+		<caption>
+			<button label="New km point" onClick="@command('newKmPoint')"></button>
+		</caption>
+		
 		<groupbox mold="3d" closable="false">
-			<caption label="KmPoint list">
-				<button label="new" onClick="@command('newKmPoint')"></button>
+			<caption>
+				<label value="Km points list" style="font-weight: bold; font-size: 14pt"></label>
 			</caption>
 			
 			<listbox model="@load(vm.kmPoints)">
@@ -41,19 +91,39 @@
 					<listheader label="black point"></listheader>
 					<listheader label="signposting"></listheader>
 					<listheader label="radar"></listheader>
+					<listheader label="road"></listheader>
 					<listheader label="actions"></listheader>
 				</listhead>
 				
 				<template name="model">
 					<listitem>
-						<listcell><label value="@load(each.start)"></label></listcell>
-						<listcell><label value="@load(each.end)"></label></listcell>
-						<listcell><label value="@load(each.blackPoint)"></label></listcell>
-						<listcell><label value="@load(each.signposting)"></label></listcell>
-						<listcell><label value="@load(each.radar)"></label></listcell>
 						<listcell>
-							<button label="delete" onClick="@command('delete', kmp = each)"/>
+							<label value="@load(each.start)"></label>
+						</listcell>
+						
+						<listcell>
+							<label value="@load(each.end)"></label>
+						</listcell>
+						
+						<listcell>
+							<label value="@load(each.blackPoint)"></label>
+						</listcell>
+						
+						<listcell>
+							<label value="@load(each.signposting)"></label>
+						</listcell>
+						
+						<listcell>
+							<label value="@load(each.radar)"></label>
+						</listcell>
+						
+						<listcell>
+							<label value="@load(each.road.name)"></label>
+						</listcell>
+						
+						<listcell>
 							<button label="edit" onClick="@command('edit', kmp = each)"/>
+							<button label="delete" onClick="@command('delete', kmp = each)"/>
 						</listcell>	
 					</listitem>
 				</template>

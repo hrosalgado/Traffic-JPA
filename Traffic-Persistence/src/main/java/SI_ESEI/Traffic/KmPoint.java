@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class KmPoint{
@@ -33,18 +34,21 @@ public class KmPoint{
 	
 	// blackPoint
 	@Column(name = "black_point")
+	@Size(min = 1, max = 3)
 	@NotNull
-	private int blackPoint;
+	private String blackPoint;
 	
 	// signposting
 	@Column(name = "signposting")
+	@Size(min = 1, max = 3)
 	@NotNull
-	private int signposting;
+	private String signposting;
 	
 	// radar
 	@Column(name = "radar")
+	@Size(min = 1, max = 3)
 	@NotNull
-	private int radar;
+	private String radar;
 	
 	public int getId(){
 		return id;
@@ -66,27 +70,27 @@ public class KmPoint{
 		this.end = end;
 	}
 	
-	public int getblackPoint(){
+	public String getblackPoint(){
 		return blackPoint;
 	}
 	
-	public void setblackPoint(int blackPoint){
+	public void setblackPoint(String blackPoint){
 		this.blackPoint = blackPoint;
 	}
 	
-	public int getSignposting(){
+	public String getSignposting(){
 		return signposting;
 	}
 	
-	public void setSignposting(int signposting){
+	public void setSignposting(String signposting){
 		this.signposting = signposting;
 	}
 	
-	public int getRadar(){
+	public String getRadar(){
 		return radar;
 	}
 	
-	public void setRadar(int radar){
+	public void setRadar(String radar){
 		this.radar = radar;
 	}
 	

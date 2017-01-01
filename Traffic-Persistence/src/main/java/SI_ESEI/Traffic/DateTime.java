@@ -66,12 +66,12 @@ public class DateTime{
 	// Weekend
 	@Column(name = "weekend")
 	@NotNull
-	private Boolean weekend;
+	private String weekend;
 	
 	// Holiday
 	@Column(name = "holiday")
 	@NotNull
-	private Boolean holiday;
+	private String holiday;
 
 	public int getId(){
 		return id;
@@ -125,19 +125,19 @@ public class DateTime{
 		this.weather = weather;
 	}
 
-	public Boolean getWeekend() {
+	public String getWeekend() {
 		return weekend;
 	}
 
-	public void setWeekend(Boolean weekend) {
+	public void setWeekend(String weekend) {
 		this.weekend = weekend;
 	}
 
-	public Boolean getHoliday() {
+	public String getHoliday() {
 		return holiday;
 	}
 
-	public void setHoliday(Boolean holiday) {
+	public void setHoliday(String holiday) {
 		this.holiday = holiday;
 	}
 	

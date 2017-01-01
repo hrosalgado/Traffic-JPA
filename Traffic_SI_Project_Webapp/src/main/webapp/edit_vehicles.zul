@@ -1,37 +1,88 @@
 <zk>
-	<include src = "menu.zul"></include>
-	<window title = "Edit vehicles" border = "normal"
-		apply = "org.zkoss.bind.BindComposer"
-		viewModel = "@id('vm') @init('SI_ESEI.Traffic.webapp.VehiclesVM')">
-		<window title="Vehicle editor" border="normal" mode="modal" visible="@load(vm.currentVehicle ne null)">
-			Type: <textbox value="@load(vm.currentVehicle.type) @save(vm.currentVehicle.type, before='save')"></textbox>
-			
-			Brand: <textbox value="@load(vm.currentVehicle.brand) @save(vm.currentVehicle.brand, before='save')"></textbox>
-			
-			Car spaces: <textbox value="@load(vm.currentVehicle.carSpaces) @save(vm.currentVehicle.carSpaces, before='save')"></textbox>
-			
-			Passengers: <textbox value="@load(vm.currentVehicle.passengers) @save(vm.currentVehicle.passengers, before='save')"></textbox>
-			
-			Antiquity <textbox value="@load(vm.currentVehicle.antiquity) @save(vm.currentVehicle.antiquity, before='save')"></textbox>
-			
-			Drive permission: <textbox value="@load(vm.currentVehicle.drivePermission) @save(vm.currentVehicle.drivePermission, before='save')"></textbox>
-			
-			Electric: <textbox value="@load(vm.currentVehicle.electric) @save(vm.currentVehicle.electric, before='save')"></textbox>
-			
-			Driver
-			<listbox model="@load(vm.drivers)" multiple="true"
-						selectedItem="@load(vm.currentVehicle.drivers) @save(vm.currentVehicle.drivers, before='save')">
+
+	<include src = "index.zul"></include>
+	<window border="normal" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('SI_ESEI.Traffic.webapp.VehiclesVM')">
+		<window title="Vehicle editor" border="normal" mode="modal" visible="@load(vm.currentVehicle ne null)" width="75%">
+			<groupbox mold="3d" closable="false">
+				<caption>
+					<label value="New vehicle" style="font-weight: bold; font-size: 14pt"></label>
+				</caption>
 				
-				<listhead>
-					<listheader label="Driver"></listheader>
-				</listhead>
-				
-				<template name="model">
-					<listitem><listcell><label value="@load(each.age)"/></listcell></listitem>
-				</template>
-				
-				
-			</listbox>
+				<listbox>
+					<listhead>
+						<listheader width="15%"><label value="Field" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="35%"><label value="Description" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="20%"><label value="Value" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="30%"><label value="Message" style="font-weight: bold; font-size: 12pt"></label></listheader>
+					</listhead>
+					
+					<listitem>
+						<listcell><label value="Type"></label></listcell>
+						<listcell><label value="Car, van, lorry, motorbyke, ..."></label></listcell>
+						<listcell><textbox placeholder="Car" value="@save(vm.currentVehicle.type, before='save')"></textbox></listcell>
+						<listcell><label value="@load(vm.typeError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Brand"></label></listcell>
+						<listcell><label value="Audi, BMW, Renault, Honda, ..."></label></listcell>
+						<listcell><textbox placeholder="Audi" value="@save(vm.currentVehicle.brand, before='save')"></textbox></listcell>
+						<listcell><label value="@load(vm.brandError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Seats"></label></listcell>
+						<listcell><label value="Number of seats"></label></listcell>
+						<listcell><intbox placeholder="2" value="@save(vm.currentVehicle.carSpaces, before='save')"></intbox></listcell>
+						<listcell><label value="@load(vm.carSpacesError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Passengers"></label></listcell>
+						<listcell><label value="Number of passengers"></label></listcell>
+						<listcell><intbox placeholder="2" value="@save(vm.currentVehicle.passengers, before='save')"></intbox></listcell>
+						<listcell><label value="@load(vm.passengersError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Antiquity"></label></listcell>
+						<listcell><label value="Years of antiquity"></label></listcell>
+						<listcell><intbox placeholder="4" value="@save(vm.currentVehicle.antiquity, before='save')"></intbox></listcell>
+						<listcell><label value="@load(vm.antiquityError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Drive permission"></label></listcell>
+						<listcell><label value="Yes, if you need a drive permission to drive the vehicle; No, if not."></label></listcell>
+						<listcell><textbox placeholder="Yes" value="@save(vm.currentVehicle.drivePermission, before='save')"></textbox></listcell>
+						<listcell><label value="@load(vm.drivePermissionError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Electric"></label></listcell>
+						<listcell><label value="Yes, if the vehicle is electric; No, if not."></label></listcell>
+						<listcell><textbox placeholder="No" value="@save(vm.currentVehicle.electric, before='save')"></textbox></listcell>
+						<listcell><label value="@load(vm.electricError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Driver"></label></listcell>
+						<listcell><label value="Choose the driver/drivers who drives/drive this vehicle"></label></listcell>
+						<listcell>
+							<listbox model="@load(vm.drivers)" multiple="true"
+										selectedItems="@load(vm.currentVehicle.drivers) @save(vm.currentVehicle.drivers, before='save')">
+								<template name="model">
+									<listitem>
+										 <listcell><label value="@load(each.age)"></label></listcell>
+									</listitem>
+								</template>
+							</listbox>
+						</listcell>
+						<listcell><label value=""></label></listcell>
+					</listitem>
+				</listbox>
+			</groupbox>
 			
 			<hbox>
 				<button label="save" onClick="@command('save')"></button>
@@ -39,11 +90,15 @@
 			</hbox>
 		</window>
 		
+		<caption>
+			<button label="New vehicle" onClick="@command('newVehicle')"></button>
+		</caption>
+		
 		<groupbox mold="3d" closable="false">
-			<caption label="Vehicle list">
-				<button label="new" onClick="@command('newVehicle')"></button>
+			<caption>
+				<label value="Vehicles list" style="font-weight: bold; font-size: 14pt"></label>
 			</caption>
-			
+		
 			<listbox model="@load(vm.vehicles)">
 				<listhead>
 					<listheader label="type"></listheader>
@@ -92,8 +147,8 @@
 						</listcell>
 						
 						<listcell>
-							<button label="delete" onClick="@command('delete', v = each)"></button>
 							<button label="edit" onClick="@command('edit', v = each)"></button>
+							<button label="delete" onClick="@command('delete', v = each)"></button>
 						</listcell>
 					</listitem>
 				</template>

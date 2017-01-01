@@ -43,11 +43,11 @@ public class DriverTest extends SQLBasedTest{
 		final Driver driver = new Driver();
 		
 		doTransaction(emf, em -> {
-			driver.setSex(false);
+			driver.setSex("Female");
 			driver.setAge(22);
 			driver.setExperience(0);
 			driver.setPreviousInfractions(0);
-			driver.setIll(false);
+			driver.setIll("No");
 			em.persist(driver);
 		});
 		

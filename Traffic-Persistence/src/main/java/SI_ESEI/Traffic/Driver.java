@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Driver{
@@ -30,10 +31,11 @@ public class Driver{
 	@NotNull
 	private int age;
 	
-	// Sex (true -> male, false -> female)
+	// Sex (Male or Female)
 	@Column(name = "sex")
+	@Size(min = 1, max = 6)
 	@NotNull
-	private Boolean sex;
+	private String sex;
 	
 	// Experience
 	@Column(name = "experience")
@@ -49,8 +51,9 @@ public class Driver{
 	
 	// Ill
 	@Column(name = "ill")
+	@Size(min = 1, max = 3)
 	@NotNull
-	private Boolean ill;
+	private String ill;
 	
 	public int getId(){
 		return id;
@@ -64,11 +67,11 @@ public class Driver{
 		this.age = age;
 	}
 
-	public Boolean getSex(){
+	public String getSex(){
 		return sex;
 	}
 
-	public void setSex(Boolean sex){
+	public void setSex(String sex){
 		this.sex = sex;
 	}
 
@@ -88,11 +91,11 @@ public class Driver{
 		this.previousInfractions = previousInfractions;
 	}
 	
-	public Boolean getIll(){
+	public String getIll(){
 		return ill;
 	}
 
-	public void setIll(Boolean ill){
+	public void setIll(String ill){
 		this.ill = ill;
 	}
 	

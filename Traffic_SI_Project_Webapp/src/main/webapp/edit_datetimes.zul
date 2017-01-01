@@ -1,34 +1,93 @@
 <zk>
-	<include src="menu.zul"></include>
-	<window title="Edit dateTimes" border="normal"
-		apply="org.zkoss.bind.BindComposer"
+	<include src="index.zul"></include>
+	<window border="normal" apply="org.zkoss.bind.BindComposer"
 		viewModel="@id('vm') @init('SI_ESEI.Traffic.webapp.DateTimesVM')"
 	>
-		<window title="DateTime editor" border="normal" mode="modal" visible="@load(vm.currentDateTime ne null)">
-			Day: <textbox value="@load(vm.currentDateTime.day) @save(vm.currentDateTime.day, before='save')"></textbox>
+		<window border="normal" mode="modal" visible="@load(vm.currentDateTime ne null)" width="75%">
+			<groupbox mold="3d" closable="false">
+				<caption>
+					<label value="New date" style="font-weight: bold; font-size: 14pt"></label>
+				</caption>
+				
+				<listbox>
+					<listhead>
+						<listheader width="15%"><label value="Field" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="35%"><label value="Description" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="20%"><label value="Value" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="30%"><label value="Message" style="font-weight: bold; font-size: 12pt"></label></listheader>
+					</listhead>
+					
+					<listitem>
+						<listcell><label value="Day"></label></listcell>
+						<listcell><label value="Day"></label></listcell>
+						<listcell><intbox placeholder="1" value="@save(vm.currentDateTime.day, before='save')"></intbox></listcell>
+						<listcell><label value="@load(vm.dayError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Month"></label></listcell>
+						<listcell><label value="Month"></label></listcell>
+						<listcell><intbox placeholder="1" value="@save(vm.currentDateTime.month, before='save')"></intbox></listcell>
+						<listcell><label value="@load(vm.monthError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Year"></label></listcell>
+						<listcell><label value="Year"></label></listcell>
+						<listcell><intbox placeholder="2017" value="@save(vm.currentDateTime.year, before='save')"></intbox></listcell>
+						<listcell><label value="@load(vm.yearError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Hour"></label></listcell>
+						<listcell><label value="Hour"></label></listcell>
+						<listcell><intbox placeholder="16" value="@save(vm.currentDateTime.hour, before='save')"></intbox></listcell>
+						<listcell><label value="@load(vm.hourError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Season"></label></listcell>
+						<listcell><label value="Choose a season between spring, summer, autumn or winter"></label></listcell>
+						<listcell><textbox placeholder="winter" value="@save(vm.currentDateTime.season, before='save')"></textbox></listcell>
+						<listcell><label value="@load(vm.seasonError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Weather"></label></listcell>
+						<listcell><label value="Choose a weather between sunny, cloudy, rainy or foggy"></label></listcell>
+						<listcell><textbox placeholder="rainy" value="@save(vm.currentDateTime.weather, before='save')"></textbox></listcell>
+						<listcell><label value="@load(vm.weatherError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Weekend"></label></listcell>
+						<listcell><label value="Yes, if it's weekend; No, if not."></label></listcell>
+						<listcell><textbox placeholder="no" value="@save(vm.currentDateTime.weekend, before='save')"></textbox></listcell>
+						<listcell><label value="@load(vm.weekendError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Holiday"></label></listcell>
+						<listcell><label value="Yes, if it's holidy; No, if not."></label></listcell>
+						<listcell><textbox placeholder="yes" value="@save(vm.currentDateTime.holiday, before='save')"></textbox></listcell>
+						<listcell><label value="@load(vm.holidayError)"></label></listcell>
+					</listitem>
+				</listbox>
+			</groupbox>
 			
-			Month: <textbox value="@load(vm.currentDateTime.month) @save(vm.currentDateTime.month, before='save')"></textbox>
-			
-			Year: <textbox value="@load(vm.currentDateTime.year) @save(vm.currentDateTime.year, before='save')"></textbox>
-			
-			Hour: <textbox value="@load(vm.currentDateTime.hour) @save(vm.currentDateTime.hour, before='save')"></textbox>
-			
-			Season: <textbox value="@load(vm.currentDateTime.season) @save(vm.currentDateTime.season, before='save')"></textbox>
-			
-			Weather: <textbox value="@laod(vm.currentDateTime.weather) @save(vm.currentDateTime.weather, before='save')"></textbox>
-			
-			Weekend: <textbox value="@load(vm.currentDateTime.weekend) @save(vm.currentDateTime.weekend, before='save')"></textbox>
-			
-			Holiday: <textbox value="@load(vm.currentDateTime.holiday) @save(vm.currentDateTime.holiday, before='save')"></textbox>
 			<hbox>
 				<button label="save" onClick="@command('save')"></button>
 				<button label="cancel" onClick="@command('cancel')"></button>
 			</hbox>
 		</window>
 		
+		<caption>
+			<button label="New date" onClick="@command('newDateTime')"></button>
+		</caption>
+		
 		<groupbox mold="3d" closable="false">
-			<caption label="DateTime list">
-				<button label="new" onClick="@command('newDateTime')"></button>
+			<caption>
+				<label value="Dates list" style="font-weight: bold; font-size: 14pt"></label>
 			</caption>
 			
 			<listbox model="@load(vm.dateTimes)">
@@ -79,8 +138,8 @@
 						</listcell>
 						
 						<listcell>
-							<button label="delete" onClick="@command('delete', dt = each)"></button>
 							<button label="edit" onClick="@command('edit', dt = each)"></button>
+							<button label="delete" onClick="@command('delete', dt = each)"></button>
 						</listcell>
 					</listitem>
 				</template>

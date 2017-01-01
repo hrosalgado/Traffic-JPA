@@ -45,7 +45,7 @@ public class RoadTest extends SQLBasedTest{
 		doTransaction(emf, em -> {
 			road.setMaxSpeed(120);
 			road.setName("A-52");
-			road.setToll(false);
+			road.setToll("No");
 			road.setType("Highway");
 			
 			em.persist(road);

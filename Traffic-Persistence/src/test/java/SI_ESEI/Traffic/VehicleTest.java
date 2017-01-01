@@ -44,8 +44,8 @@ private static EntityManagerFactory emf;
 			vehicle.setAntiquity(4);
 			vehicle.setBrand("BMW");
 			vehicle.setCarSpaces(2);
-			vehicle.setDrivePermission(true);
-			vehicle.setElectric(false);
+			vehicle.setDrivePermission("Yes");
+			vehicle.setElectric("No");
 			vehicle.setPassengers(2);
 			vehicle.setType("Car");
 			

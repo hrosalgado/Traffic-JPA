@@ -1,18 +1,58 @@
 <zk>
-	<include src = "menu.zul"></include>
-	<window title = "Edit drivers" border = "normal"
-		apply = "org.zkoss.bind.BindComposer"
-		viewModel = "@id('vm') @init('SI_ESEI.Traffic.webapp.DriversVM')">
-		<window title="Driver editor" border="normal" mode="modal" visible="@load(vm.currentDriver ne null)">
-			Age: <textbox value="@load(vm.currentDriver.age) @save(vm.currentDriver.age, before='save')"></textbox>
-			
-			Sex: <textbox value="@load(vm.currentDriver.sex) @save(vm.currentDriver.sex, before='save')"></textbox>
-			
-			Experience: <textbox value="@load(vm.currentDriver.experience) @save(vm.currentDriver.experience, before='save')"></textbox>
-			
-			Previous infractions: <textbox value="@load(vm.currentDriver.previousInfractions) @save(vm.currentDriver.previousInfractions, before='save')"></textbox>
-			
-			Ill <textbox value="@load(vm.currentDriver.ill) @save(vm.currentDriver.ill, before='save')"></textbox>
+	<include src="index.zul"></include>
+	<window border="normal" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('SI_ESEI.Traffic.webapp.DriversVM')"
+	>
+		<window title="Driver editor" border="normal" mode="modal" visible="@load(vm.currentDriver ne null)" width="75%">
+			<groupbox mold="3d" closable="false">
+				<caption>
+					<label value="New driver" style="font-weight: bold; font-size: 14pt"></label>
+				</caption>
+				
+				<listbox>
+					<listhead>
+						<listheader width="15%"><label value="Field" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="35%"><label value="Description" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="20%"><label value="Value" style="font-weight: bold; font-size: 12pt"></label></listheader>
+						<listheader width="30%"><label value="Message" style="font-weight: bold; font-size: 12pt"></label></listheader>
+					</listhead>
+					
+					<listitem>
+						<listcell><label value="Age"></label></listcell>
+						<listcell><label value="Between 18 and 85 years"></label></listcell>
+						<listcell><intbox placeholder="20" value="@save(vm.currentDriver.age, before='save')"></intbox></listcell>
+						<listcell><label value="@load(vm.ageError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Sex"></label></listcell>
+						<listcell><label value="Male or Female"></label></listcell>
+						<listcell><textbox placeholder="Female" value="@save(vm.currentDriver.sex, before='save')"></textbox></listcell>
+						<listcell><label value="@load(vm.sexError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Experience"></label></listcell>
+						<listcell><label value="Driving experience in years"></label></listcell>
+						<listcell><intbox placeholder="0" value="@save(vm.currentDriver.experience, before='save')"></intbox></listcell>
+						<listcell><label value="@load(vm.experienceError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Previous infractions"></label></listcell>
+						<listcell><label value="Amount of infractions you have had during your driving years experience"></label></listcell>
+						<listcell><intbox placeholder="0" value="@save(vm.currentDriver.previousInfractions, before='save')"></intbox> </listcell>
+						<listcell><label value="@load(vm.previousInfractionsError)"></label></listcell>
+					</listitem>
+					
+					<listitem>
+						<listcell><label value="Ill"></label></listcell>
+						<listcell><label multiline="true" value="Yes, if you are ill; No, if you are healthy"></label></listcell>
+						<listcell><textbox placeholder="No" value="@save(vm.currentDriver.ill, before='save')"></textbox></listcell>
+						<listcell><label value="@load(vm.illError)"></label></listcell>
+					</listitem>
+				</listbox>
+			</groupbox>
 			
 			<hbox>
 				<button label="save" onClick="@command('save')"></button>
@@ -20,9 +60,13 @@
 			</hbox>
 		</window>
 		
+		<caption>
+			<button label="New driver" onClick="@command('newDriver')"></button>
+		</caption>
+		
 		<groupbox mold="3d" closable="false">
-			<caption label="Driver list">
-				<button label="new" onClick="@command('newDriver')"></button>
+			<caption>
+				<label value="Drivers list" style="font-weight: bold; font-size: 14pt"></label>
 			</caption>
 			
 			<listbox model="@load(vm.drivers)">
@@ -58,8 +102,8 @@
 						</listcell>
 						
 						<listcell>
-							<button label="delete" onClick="@command('delete', d = each)"></button>
 							<button label="edit" onClick="@command('edit', d = each)"></button>
+							<button label="delete" onClick="@command('delete', d = each)"></button>
 						</listcell>
 					</listitem>
 				</template>

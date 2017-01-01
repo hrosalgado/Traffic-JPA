@@ -58,24 +58,83 @@ public class InfractionsVM{
 	}
 	
 	@Command
-	@NotifyChange({"infractions", "currentInfraction"})
+	@NotifyChange({"infractions", "currentInfraction", "typeError",
+				   "descriptionError", "penaltyError"})
 	public void save(){
-		EntityManager em = DesktopEntityManagerManager.getDesktopEntityManager();
-		TransactionUtils.doTransaction(em, __ -> {
-			em.persist(this.currentInfraction);
-		});
-		this.currentInfraction = null;
+		boolean flag;
+		int cont = 0;
+		
+		// Type
+		if(!this.currentInfraction.getType().toLowerCase().equals("low")
+			&& !this.currentInfraction.getType().toLowerCase().equals("medium")
+			&& !this.currentInfraction.getType().toLowerCase().equals("high")){
+			this.typeError = "Incorrect format! Choose between low, medium or high.";
+			cont++;
+		}else{
+			this.typeError = "-";
+		}
+		
+		// Description
+		
+		
+		// Penalty
+		if(this.currentInfraction.getPenalty() < 0){
+			this.penaltyError = "Incorrect value! It must be equal or more than 0";
+			cont++;
+		}else{
+			this.penaltyError = "-";
+		}
+		
+		if(cont == 0){
+			flag = true;
+		}else{
+			flag = false;
+		}
+		
+		if(flag){
+			EntityManager em = DesktopEntityManagerManager.getDesktopEntityManager();
+			TransactionUtils.doTransaction(em, __ -> {
+				em.persist(this.currentInfraction);
+			});
+			this.currentInfraction = null;
+			
+			this.typeError = "-";
+			this.descriptionError = "-";
+			this.penaltyError = "-";
+		}
 	}
 	
 	@Command
-	@NotifyChange("currentInfraction")
+	@NotifyChange({"currentInfraction", "typeError",
+			   	   "descriptionError", "penaltyError"})
 	public void cancel(){
 		this.currentInfraction = null;
+		
+		this.typeError = "-";
+		this.descriptionError = "-";
+		this.penaltyError = "-";
 	}
 	
 	@Command
 	@NotifyChange("currentInfraction")
 	public void edit(@BindingParam("i") Infraction infraction){
 		this.currentInfraction = infraction;
+	}
+	
+	// Error messages
+	private String typeError = "-";
+	private String descriptionError = "-";
+	private String penaltyError = "-";
+	
+	public String getTypeError(){
+		return this.typeError;
+	}
+	
+	public String getDescriptionError(){
+		return this.descriptionError;
+	}
+	
+	public String getPenaltyError(){
+		return this.penaltyError;
 	}
 }

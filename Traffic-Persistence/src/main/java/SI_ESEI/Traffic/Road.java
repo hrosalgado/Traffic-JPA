@@ -36,7 +36,7 @@ public class Road{
 	// Toll
 	@Column(name = "toll")
 	@NotNull
-	private Boolean toll;
+	private String toll;
 	
 	// Max speed
 	@Column(name = "max_speed")
@@ -63,11 +63,11 @@ public class Road{
 		this.type = type;
 	}
 
-	public Boolean getToll(){
+	public String getToll(){
 		return toll;
 	}
 
-	public void setToll(Boolean toll){
+	public void setToll(String toll){
 		this.toll = toll;
 	}
 
