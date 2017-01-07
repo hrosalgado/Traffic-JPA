@@ -99,7 +99,6 @@ public class KmPointTest extends SQLBasedTest{
 		
 		assertEquals(id, resultSet.getInt("id"));
 		assertEquals(14, resultSet.getInt("end"));
-		assertEquals(5, resultSet.getInt("radar"));
 	}
 	
 	// Delete

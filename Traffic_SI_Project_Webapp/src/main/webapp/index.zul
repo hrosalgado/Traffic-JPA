@@ -1,39 +1,18 @@
 <zk>
-	<menubar>
-		<menu label = "Vehicles">
-			<menupopup>
-				<menuitem label = "Edit vehicles" href = "edit_vehicles.zul"></menuitem>
-			</menupopup>
-		</menu>
-		
-		<menu label = "Drivers">
-			<menupopup>
-				<menuitem label = "Edit drivers" href = "edit_drivers.zul"></menuitem>
-			</menupopup>
-		</menu>
-		
-		<menu label = "Datetimes">
-			<menupopup>
-				<menuitem label = "Edit datetimes" href = "edit_datetimes.zul"></menuitem>
-			</menupopup>
-		</menu>
-		
-		<menu label = "Roads">
-			<menupopup>
-				<menuitem label = "Edit roads" href = "edit_roads.zul"></menuitem>
-			</menupopup>
-		</menu>
-		
-		<menu label = "Km points">
-			<menupopup>
-				<menuitem label = "Edit km points" href = "edit_kmpoints.zul"></menuitem>
-			</menupopup>
-		</menu>
-		
-		<menu label = "Infractions">
-			<menupopup>
-				<menuitem label = "Edit infractions" href = "edit_infractions.zul"></menuitem>
-			</menupopup>
-		</menu>
-	</menubar>
+	<include src="nav.zul"></include>
+	
+	<hbox>
+		<listbox>
+			<listhead>
+				<listheader align="center">
+					<label value="Welcome to traffic database!" style="font-weight:bold; font-size:20pt"></label>
+				</listheader>
+			</listhead>
+			
+			<listitem>
+				<listcell><image src="img1.png" height="50%"></image></listcell>
+				<listcell><image src="img2.png"></image></listcell>
+			</listitem>
+		</listbox>
+	</hbox>
 </zk>

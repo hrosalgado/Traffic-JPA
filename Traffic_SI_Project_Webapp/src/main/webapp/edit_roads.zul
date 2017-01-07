@@ -1,5 +1,5 @@
 <zk>
-	<include src="index.zul"></include>
+	<include src="nav.zul"></include>
 	<window border="normal" apply="org.zkoss.bind.BindComposer"
 		viewModel = "@id('vm') @init('SI_ESEI.Traffic.webapp.RoadsVM')"
 	>
@@ -20,28 +20,28 @@
 					<listitem>
 						<listcell><label value="Name"></label></listcell>
 						<listcell><label value="Name of the road"></label></listcell>
-						<listcell><textbox placeholder="A-52" value="@save(vm.currentRoad.name, before='save')"></textbox></listcell>
+						<listcell><textbox placeholder="A-52" value="@load(vm.currentRoad.name) @save(vm.currentRoad.name, before='save')"></textbox></listcell>
 						<listcell><label value="@load(vm.nameError)"></label></listcell>
 					</listitem>
 					
 					<listitem>
 						<listcell><label value="Type"></label></listcell>
 						<listcell><label value="Type of road: highway, motorway, national, ..."></label></listcell>
-						<listcell><textbox placeholder="Highway" value="@save(vm.currentRoad.type, before='save')"></textbox></listcell>
+						<listcell><textbox placeholder="Highway" value="@load(vm.currentRoad.type) @save(vm.currentRoad.type, before='save')"></textbox></listcell>
 						<listcell><label value="@load(vm.typeError)"></label></listcell>
 					</listitem>
 					
 					<listitem>
 						<listcell><label value="Toll"></label></listcell>
 						<listcell><label value="Yes, if the road has toll; No, if not."></label></listcell>
-						<listcell><textbox placeholder="No" value="@save(vm.currentRoad.toll, before='save')"></textbox></listcell>
+						<listcell><textbox placeholder="No" value="@load(vm.currentRoad.toll) @save(vm.currentRoad.toll, before='save')"></textbox></listcell>
 						<listcell><label value="@load(vm.tollError)"></label></listcell>
 					</listitem>
 					
 					<listitem>
 						<listcell><label value="Max. Speed"></label></listcell>
 						<listcell><label value="Max. Speed allowed in the road."></label></listcell>
-						<listcell><intbox placeholder="120" value="@save(vm.currentRoad.maxSpeed, before='save')"></intbox></listcell>
+						<listcell><intbox placeholder="120" value="@load(vm.currentRoad.maxSpeed) @save(vm.currentRoad.maxSpeed, before='save')"></intbox></listcell>
 						<listcell><label value="@load(vm.maxSpeedError)"></label></listcell>
 					</listitem>
 				</listbox>

@@ -1,5 +1,5 @@
 <zk>
-	<include src="index.zul"></include>
+	<include src="nav.zul"></include>
 	<window border="normal" apply="org.zkoss.bind.BindComposer"
 		viewModel="@id('vm') @init('SI_ESEI.Traffic.webapp.DriversVM')"
 	>
@@ -20,35 +20,35 @@
 					<listitem>
 						<listcell><label value="Age"></label></listcell>
 						<listcell><label value="Between 18 and 85 years"></label></listcell>
-						<listcell><intbox placeholder="20" value="@save(vm.currentDriver.age, before='save')"></intbox></listcell>
+						<listcell><intbox placeholder="20" value="@load(vm.currentDriver.age) @save(vm.currentDriver.age, before='save')"></intbox></listcell>
 						<listcell><label value="@load(vm.ageError)"></label></listcell>
 					</listitem>
 					
 					<listitem>
 						<listcell><label value="Sex"></label></listcell>
 						<listcell><label value="Male or Female"></label></listcell>
-						<listcell><textbox placeholder="Female" value="@save(vm.currentDriver.sex, before='save')"></textbox></listcell>
+						<listcell><textbox placeholder="Female" value="@load(vm.currentDriver.sex) @save(vm.currentDriver.sex, before='save')"></textbox></listcell>
 						<listcell><label value="@load(vm.sexError)"></label></listcell>
 					</listitem>
 					
 					<listitem>
 						<listcell><label value="Experience"></label></listcell>
 						<listcell><label value="Driving experience in years"></label></listcell>
-						<listcell><intbox placeholder="0" value="@save(vm.currentDriver.experience, before='save')"></intbox></listcell>
+						<listcell><intbox placeholder="0" value="@load(vm.currentDriver.experience) @save(vm.currentDriver.experience, before='save')"></intbox></listcell>
 						<listcell><label value="@load(vm.experienceError)"></label></listcell>
 					</listitem>
 					
 					<listitem>
 						<listcell><label value="Previous infractions"></label></listcell>
 						<listcell><label value="Amount of infractions you have had during your driving years experience"></label></listcell>
-						<listcell><intbox placeholder="0" value="@save(vm.currentDriver.previousInfractions, before='save')"></intbox> </listcell>
+						<listcell><intbox placeholder="0" value="@load(vm.currentDriver.previousInfractions) @save(vm.currentDriver.previousInfractions, before='save')"></intbox> </listcell>
 						<listcell><label value="@load(vm.previousInfractionsError)"></label></listcell>
 					</listitem>
 					
 					<listitem>
 						<listcell><label value="Ill"></label></listcell>
 						<listcell><label multiline="true" value="Yes, if you are ill; No, if you are healthy"></label></listcell>
-						<listcell><textbox placeholder="No" value="@save(vm.currentDriver.ill, before='save')"></textbox></listcell>
+						<listcell><textbox placeholder="No" value="@load(vm.currentDriver.ill) @save(vm.currentDriver.ill, before='save')"></textbox></listcell>
 						<listcell><label value="@load(vm.illError)"></label></listcell>
 					</listitem>
 				</listbox>

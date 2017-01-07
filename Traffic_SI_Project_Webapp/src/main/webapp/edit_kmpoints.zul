@@ -1,5 +1,5 @@
 <zk>
-	<include src="index.zul"></include>
+	<include src="nav.zul"></include>
 	<window border="normal" apply="org.zkoss.bind.BindComposer"
 		viewModel = "@id('vm') @init('SI_ESEI.Traffic.webapp.KmPointsVM')"
 	>
@@ -20,35 +20,35 @@
 					<listitem>
 						<listcell><label value="Start"></label></listcell>
 						<listcell><label value="Start of the km point"></label></listcell>
-						<listcell><intbox placeholder="0" value="@save(vm.currentKmPoint.start, before='save')"></intbox></listcell>
+						<listcell><intbox placeholder="0" value="@load(vm.currentKmPoint.start) @save(vm.currentKmPoint.start, before='save')"></intbox></listcell>
 						<listcell><label value="@load(vm.startError)"></label></listcell>
 					</listitem>
 					
 					<listitem>
 						<listcell><label value="End"></label></listcell>
 						<listcell><label value="End of the km point"></label></listcell>
-						<listcell><intbox placeholder="1" value="@save(vm.currentKmPoint.end, before='save')"></intbox></listcell>
+						<listcell><intbox placeholder="1" value="@load(vm.currentKmPoint.end) @save(vm.currentKmPoint.end, before='save')"></intbox></listcell>
 						<listcell><label value="@load(vm.endError)"></label></listcell>
 					</listitem>
 					
 					<listitem>
 						<listcell><label value="Black point"></label></listcell>
 						<listcell><label value="Yes, if the km point is a black point; No, if not."></label></listcell>
-						<listcell><textbox placeholder="No" value="@save(vm.currentKmPoint.blackPoint, before='save')"></textbox></listcell>
+						<listcell><textbox placeholder="No" value="@load(vm.currentKmPoint.blackPoint) @save(vm.currentKmPoint.blackPoint, before='save')"></textbox></listcell>
 						<listcell><label value="@load(vm.blackPointError)"></label></listcell>
 					</listitem>
 					
 					<listitem>
 						<listcell><label value="Signposting"></label></listcell>
 						<listcell><label value="Yes, if the km point has signposting; No, if not."></label></listcell>
-						<listcell><textbox placeholder="Yes" value="@save(vm.currentKmPoint.signposting, before='save')"></textbox></listcell>
+						<listcell><textbox placeholder="Yes" value="@load(vm.currentKmPoint.signposting) @save(vm.currentKmPoint.signposting, before='save')"></textbox></listcell>
 						<listcell><label value="@load(vm.signpostingError)"></label></listcell>
 					</listitem>
 					
 					<listitem>
 						<listcell><label value="Radar"></label></listcell>
 						<listcell><label value="Yes, if the km point has radar; No, if not."></label></listcell>
-						<listcell><textbox placeholder="No" value="@save(vm.currentKmPoint.radar, before='save')"></textbox></listcell>
+						<listcell><textbox placeholder="No" value="@load(vm.currentKmPoint.radar) @save(vm.currentKmPoint.radar, before='save')"></textbox></listcell>
 						<listcell><label value="@load(vm.radarError)"></label></listcell>
 					</listitem>
 					

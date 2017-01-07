@@ -1,5 +1,5 @@
 <zk>
-	<include src="index.zul"></include>
+	<include src="nav.zul"></include>
 	<window border="normal" apply="org.zkoss.bind.BindComposer"
 			viewModel="@id('vm') @init('SI_ESEI.Traffic.webapp.InfractionsVM')"
 	>
@@ -20,7 +20,7 @@
 					<listitem>
 						<listcell><label value="Type"></label></listcell>
 						<listcell><label value="Type of the infraction: low, medium or high."></label></listcell>
-						<listcell><textbox placeholder="Low" value="@save(vm.currentInfraction.type, before='save')"></textbox></listcell>
+						<listcell><textbox placeholder="Low" value="@load(vm.currentInfraction.type) @save(vm.currentInfraction.type, before='save')"></textbox></listcell>
 						<listcell><label value="@load(vm.typeError)"></label></listcell>
 					</listitem>
 					
@@ -28,7 +28,7 @@
 						<listcell><label value="Description"></label></listcell>
 						<listcell><label value="Description of the infraction."></label></listcell>
 						<listcell>
-							<textbox placeholder="You have exceeded the allowed speed limit" value="@save(vm.currentInfraction.description, before='save')"></textbox>
+							<textbox placeholder="You have exceeded the allowed speed limit" value="@load(vm.currentInfraction.description) @save(vm.currentInfraction.description, before='save')"></textbox>
 						</listcell>
 						<listcell><label value=""></label></listcell>
 					</listitem>
@@ -36,7 +36,7 @@
 					<listitem>
 						<listcell><label value="Penalty"></label></listcell>
 						<listcell><label value="Amount of money"></label></listcell>
-						<listcell><intbox placeholder="100" value="@save(vm.currentInfraction.penalty, before='save')"></intbox></listcell>
+						<listcell><intbox placeholder="100" value="@load(vm.currentInfraction.penalty) @save(vm.currentInfraction.penalty, before='save')"></intbox></listcell>
 						<listcell><label value="@load(vm.penaltyError)"></label></listcell>
 					</listitem>
 					

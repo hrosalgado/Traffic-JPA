@@ -1,5 +1,5 @@
 <zk>
-	<include src="index.zul"></include>
+	<include src="nav.zul"></include>
 	<window border="normal" apply="org.zkoss.bind.BindComposer"
 		viewModel="@id('vm') @init('SI_ESEI.Traffic.webapp.DateTimesVM')"
 	>
@@ -20,56 +20,56 @@
 					<listitem>
 						<listcell><label value="Day"></label></listcell>
 						<listcell><label value="Day"></label></listcell>
-						<listcell><intbox placeholder="1" value="@save(vm.currentDateTime.day, before='save')"></intbox></listcell>
+						<listcell><intbox placeholder="1" value="@load(vm.currentDateTime.day) @save(vm.currentDateTime.day, before='save')"></intbox></listcell>
 						<listcell><label value="@load(vm.dayError)"></label></listcell>
 					</listitem>
 					
 					<listitem>
 						<listcell><label value="Month"></label></listcell>
 						<listcell><label value="Month"></label></listcell>
-						<listcell><intbox placeholder="1" value="@save(vm.currentDateTime.month, before='save')"></intbox></listcell>
+						<listcell><intbox placeholder="1" value="@load(vm.currentDateTime.month) @save(vm.currentDateTime.month, before='save')"></intbox></listcell>
 						<listcell><label value="@load(vm.monthError)"></label></listcell>
 					</listitem>
 					
 					<listitem>
 						<listcell><label value="Year"></label></listcell>
 						<listcell><label value="Year"></label></listcell>
-						<listcell><intbox placeholder="2017" value="@save(vm.currentDateTime.year, before='save')"></intbox></listcell>
+						<listcell><intbox placeholder="2017" value="@load(vm.currentDateTime.year) @save(vm.currentDateTime.year, before='save')"></intbox></listcell>
 						<listcell><label value="@load(vm.yearError)"></label></listcell>
 					</listitem>
 					
 					<listitem>
 						<listcell><label value="Hour"></label></listcell>
 						<listcell><label value="Hour"></label></listcell>
-						<listcell><intbox placeholder="16" value="@save(vm.currentDateTime.hour, before='save')"></intbox></listcell>
+						<listcell><intbox placeholder="16" value="@load(vm.currentDateTime.hour) @save(vm.currentDateTime.hour, before='save')"></intbox></listcell>
 						<listcell><label value="@load(vm.hourError)"></label></listcell>
 					</listitem>
 					
 					<listitem>
 						<listcell><label value="Season"></label></listcell>
 						<listcell><label value="Choose a season between spring, summer, autumn or winter"></label></listcell>
-						<listcell><textbox placeholder="winter" value="@save(vm.currentDateTime.season, before='save')"></textbox></listcell>
+						<listcell><textbox placeholder="winter" value="@load(vm.currentDateTime.season) @save(vm.currentDateTime.season, before='save')"></textbox></listcell>
 						<listcell><label value="@load(vm.seasonError)"></label></listcell>
 					</listitem>
 					
 					<listitem>
 						<listcell><label value="Weather"></label></listcell>
 						<listcell><label value="Choose a weather between sunny, cloudy, rainy or foggy"></label></listcell>
-						<listcell><textbox placeholder="rainy" value="@save(vm.currentDateTime.weather, before='save')"></textbox></listcell>
+						<listcell><textbox placeholder="rainy" value="@load(vm.currentDateTime.weather) @save(vm.currentDateTime.weather, before='save')"></textbox></listcell>
 						<listcell><label value="@load(vm.weatherError)"></label></listcell>
 					</listitem>
 					
 					<listitem>
 						<listcell><label value="Weekend"></label></listcell>
 						<listcell><label value="Yes, if it's weekend; No, if not."></label></listcell>
-						<listcell><textbox placeholder="no" value="@save(vm.currentDateTime.weekend, before='save')"></textbox></listcell>
+						<listcell><textbox placeholder="no" value="@load(vm.currentDateTime.weekend) @save(vm.currentDateTime.weekend, before='save')"></textbox></listcell>
 						<listcell><label value="@load(vm.weekendError)"></label></listcell>
 					</listitem>
 					
 					<listitem>
 						<listcell><label value="Holiday"></label></listcell>
 						<listcell><label value="Yes, if it's holidy; No, if not."></label></listcell>
-						<listcell><textbox placeholder="yes" value="@save(vm.currentDateTime.holiday, before='save')"></textbox></listcell>
+						<listcell><textbox placeholder="yes" value="@load(vm.currentDateTime.holiday) @save(vm.currentDateTime.holiday, before='save')"></textbox></listcell>
 						<listcell><label value="@load(vm.holidayError)"></label></listcell>
 					</listitem>
 				</listbox>
