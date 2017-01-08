@@ -68,7 +68,7 @@
 					
 					<listitem>
 						<listcell><label value="Holiday"></label></listcell>
-						<listcell><label value="Yes, if it's holidy; No, if not."></label></listcell>
+						<listcell><label value="Yes, if it's holiday; No, if not."></label></listcell>
 						<listcell><textbox placeholder="yes" value="@load(vm.currentDateTime.holiday) @save(vm.currentDateTime.holiday, before='save')"></textbox></listcell>
 						<listcell><label value="@load(vm.holidayError)"></label></listcell>
 					</listitem>
