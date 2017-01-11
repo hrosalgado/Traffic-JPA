@@ -1,7 +1,0 @@
-BACK
-----
-- Cuando se añade un vehículo, en la tabla no se guarda el conductor asociado a ese vehículo.
-
-FRONT
------
-- En New Vehicle, falta un combobox con selección múltiple para elegir uno o varios conductores.
